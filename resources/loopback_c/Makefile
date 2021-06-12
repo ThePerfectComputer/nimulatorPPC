@@ -26,6 +26,9 @@ firmware.elf : $(OBJS)
 %.o : %.c
 	$(CC) -c $(CFLAGS) $< -o $@
 
+%.o : %.S
+	$(CC) -c $< -o $@
+
 .PHONY: clean
 clean:
 	rm -rf $(OBJS)
