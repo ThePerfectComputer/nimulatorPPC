@@ -3,6 +3,7 @@ LD=powerpc64le-linux-gnu-ld
 OBJCOPY=powerpc64le-linux-gnu-objcopy
 
 OBJS = main.o
+OBJS += head.o
 OBJS += uart_lpc_serial.o
 
 CFLAGS = -g -Wall -Wdouble-promotion -Wfloat-conversion -std=c99
