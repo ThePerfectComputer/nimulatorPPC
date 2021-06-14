@@ -4,11 +4,19 @@ POWER9 emulator in Nim.
 
 ## Getting Started
 
+Modify ``config.json`` with desired simulator configuration.
+
 ```bash
 cd resources/loopback
 make
-qemu-system-ppc64 -M powernv -cpu POWER9 -nographic -bios firmware.bin
-nim c -r src/nimulatorPPC.nim -f resources/loopback_asm/firmware.bin --memory_depth 12
+nim c -r src/nimulatorPPC.nim
+```
+
+## Qemu
+The generated firmware should also work in Qemu
+
+```
+qemu-system-ppc64 -M powernv -cpu POWER9 -nographic -bios resources/loopback_asm/firmware.bin
 ```
 
 # Status and TODO
@@ -23,7 +31,10 @@ nim c -r src/nimulatorPPC.nim -f resources/loopback_asm/firmware.bin --memory_de
  - [x] dockerfile
  - [x] read binaries
  - [x] pass path argument
- - [ ] get_mem(bytes < 16)
+ - [x] support bi-endian reads
+ - [ ] support bi-endian writes
+ - [ ] convert from seq to arr
+ - [ ] replace bitslice with use non-mutating bitsliced
  - [x] determine whether or not binary fits in memory
  - [ ] start decoding
  - [x] rework loadMemory to take a file

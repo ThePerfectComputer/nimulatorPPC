@@ -1,0 +1,4 @@
+{
+	"firmware" : "resources/loopback_asm/firmware.bin",
+	"ram_size" : 16
+}
