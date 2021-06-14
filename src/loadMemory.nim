@@ -5,6 +5,9 @@ import itertools
 import math
 
 proc loadMemory*(mem_depth : int, firmware_filepath : string) : seq[uint32] = 
+  ## takes a filepath to the location of a firmware binary, and
+  ## fills a seq of uint32's with the contents of the firmware binary
+
   var memory = newSeq[uint32]()
   
   # load firmware into memory seq
