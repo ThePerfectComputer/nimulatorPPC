@@ -9,7 +9,7 @@ from ram/write import writeUint8, writeUint16
 from ram/write import writeUint32, writeUint64
 from ram/ram import init, ENDIAN
 
-from cpu/decoder import decode
+from cpu/decoder import getOp
 
 from isa.mnemonic_enums import MnemonicEnums
 import config
@@ -20,4 +20,4 @@ cpu_ram.init(config.firmware)
 
 for byte_address in countup(0,32,4):
   var instruction = cpu_ram.readUint32(byte_address.uint32, endianness=ENDIAN.LITTLE)
-  print decode(instruction).opcode
+  print getOp(instruction).opcode

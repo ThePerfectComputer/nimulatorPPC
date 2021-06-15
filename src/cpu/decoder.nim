@@ -6,23 +6,16 @@ from registers import REGTYPE
 import tables
 
 import print
-from strutils import toBin
 
 proc matches(instruction : uint32, insn_info : ISAInfo) : bool = 
   var bitPat          = insn_info.bitPat
   var dontCareMask    = insn_info.dontCareMask
   var extractedCares  = (not dontCareMask) and instruction
 
-  # debug facilities
-  # print insn_info
-  # print bitPat
-  # print dontCareMask
-  # print extractedCares
-
   return (extractedCares xor bitPat) == 0
 
 
-proc decode*(instruction : uint32) : InstructionContext = 
+proc getOp*(instruction : uint32) : InstructionContext = 
   var matched_mnemonic : MnemonicEnums
   var opcode_found = false
   for mnemonic, insn_info in Pairings.pairs:

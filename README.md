@@ -19,6 +19,14 @@ The generated firmware should also work in Qemu
 qemu-system-ppc64 -M powernv -cpu POWER9 -nographic -bios resources/loopback_asm/firmware.bin
 ```
 
+# Design
+
+![](docs/architecture.png)
+
+The architecture of this simulator somewhat resembles the architecture
+of a multicyle CPU. The simulator simulates a single stage at a time,
+and continuously cycles through all stages.
+
 # Status and TODO
 
 Doesn't yet work!
