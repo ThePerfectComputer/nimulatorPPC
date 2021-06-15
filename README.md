@@ -39,6 +39,7 @@ qemu-system-ppc64 -M powernv -cpu POWER9 -nographic -bios resources/loopback_asm
        - [ ] use xor for pattern matching(should work?)
        - [ ] test endianness with decode
  - [ ] FormEnum -> FieldSelect
+ - [ ] Add sane debug and logging facilities
  - [x] support bi-endian writes
  - [x] convert from seq to arr
  - [x] replace bitslice with use non-mutating bitsliced

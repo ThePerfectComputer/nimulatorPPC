@@ -10,6 +10,7 @@ src/config
 src/test_ram
 
 src/cpu/decode
+src/cpu/decoder
 src/cpu/pipeline
 
 src/isa/form_enums
