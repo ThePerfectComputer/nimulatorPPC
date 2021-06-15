@@ -21,6 +21,7 @@ qemu-system-ppc64 -M powernv -cpu POWER9 -nographic -bios resources/loopback_asm
 
 # Status and TODO
 
+ - [ ] populate .gitignore with all binaries to possibly be generated
  - [ ] build a binary that allows me to print registers
  - [x] get mvp loopback going in QEMU
  - [x] use QEMU + gdb to figure out what is wrong
@@ -36,6 +37,7 @@ qemu-system-ppc64 -M powernv -cpu POWER9 -nographic -bios resources/loopback_asm
  - [ ] MnemonicEnum -> FormEnum
  - [ ] start decoding
        - [ ] use xor for pattern matching(should work?)
+       - [ ] test endianness with decode
  - [ ] FormEnum -> FieldSelect
  - [x] support bi-endian writes
  - [x] convert from seq to arr
