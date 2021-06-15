@@ -4,3 +4,5 @@
 *.elf
 src/nimulatorPPC
 src/memory
+src/config
+src/test_ram
