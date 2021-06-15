@@ -1,15 +1,18 @@
-import ../isa/pairings
+from ../isa/pairings import Pairings, ISAInfo
+from ../isa/mnemonic_enums import MnemonicEnums
 from ../core import uint128
-from pipeline import Pipeline
+from instruction_context import InstructionContext
 from registers import REGTYPE
 import print
 
-proc decode(instruction : uint32) : Pipeline = 
+# print REGTYPE.NONE
+
+proc decode(instruction : uint32) : InstructionContext = 
   var empty_u128 = uint128(lo : 0, hi : 0)
-  Pipeline(
+  InstructionContext(
     opcode       : MnemonicEnums.addis,
-    sources      : array[REGTYPE.NONE, REGTYPE.NONE, REGTYPE.NONE, REGTYPE.NONE, REGTYPE.NONE],
-    sources_data : array[empty_u128, empty_u128, empty_u128, empty_u128, empty_u128],
-    dests        : array[REGTYPE.NONE, REGTYPE.NONE, REGTYPE.NONE, REGTYPE.NONE, REGTYPE.NONE],
-    dests_data   : array[empty_u128, empty_u128, empty_u128, empty_u128, empty_u128]
+    sources      : [REGTYPE.NONE, REGTYPE.NONE, REGTYPE.NONE, REGTYPE.NONE, REGTYPE.NONE],
+    sources_data : [empty_u128, empty_u128, empty_u128, empty_u128, empty_u128],
+    dests        : [REGTYPE.NONE, REGTYPE.NONE, REGTYPE.NONE, REGTYPE.NONE, REGTYPE.NONE],
+    dests_data   : [empty_u128, empty_u128, empty_u128, empty_u128, empty_u128]
   )

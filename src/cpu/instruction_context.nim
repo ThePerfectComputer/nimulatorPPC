@@ -3,7 +3,7 @@ from ../core import uint128
 from registers import REGTYPE
 
 type
-  Pipeline* = object
+  InstructionContext* = object
     opcode*       : MnemonicEnums
     sources*      : array[5, REGTYPE]
     sources_data* : array[5, uint128]
