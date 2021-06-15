@@ -4,17 +4,18 @@
 *.elf
 
 src/nimulatorPPC
+src/core
 src/memory
 src/config
 src/test_ram
 
-cpu/decode
-cpu/pipeline
+src/cpu/decode
+src/cpu/pipeline
 
-isa/form_enums
-isa/mnemonic_enums
-isa/form_enums
+src/isa/form_enums
+src/isa/mnemonic_enums
+src/isa/form_enums
 
-ram/ram
-ram/read
-ram/write
+src/ram/ram
+src/ram/read
+src/ram/write
