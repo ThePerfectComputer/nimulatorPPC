@@ -21,6 +21,3 @@ cpu_ram.init(config.firmware)
 for byte_address in countup(0,32,4):
   var instruction = cpu_ram.readUint32(byte_address.uint32, endianness=ENDIAN.LITTLE)
   print decode(instruction).opcode
-# print cpu_ram
-
-# print MnemonicEnums.bc_l_a.int

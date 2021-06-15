@@ -21,23 +21,21 @@ qemu-system-ppc64 -M powernv -cpu POWER9 -nographic -bios resources/loopback_asm
 
 # Status and TODO
 
+Doesn't yet work!
+
  - [ ] populate .gitignore with all binaries to possibly be generated
  - [ ] build a binary that allows me to print registers
  - [x] get mvp loopback going in QEMU
  - [x] use QEMU + gdb to figure out what is wrong
- - [ ] build gcc-ppc on Apple Silicon
- - [ ] spin up developers log on my website
-   - [ ] allows you to keep track of what you've learned
-         each day
  - [x] dockerfile
  - [x] read binaries
  - [x] pass path argument
  - [x] support bi-endian reads
- - [ ] MnemonicEnum -> bitPat
- - [ ] MnemonicEnum -> FormEnum
- - [ ] start decoding
-       - [ ] use xor for pattern matching(should work?)
-       - [ ] test endianness with decode
+ - [x] MnemonicEnum -> bitPat
+ - [x] MnemonicEnum -> FormEnum
+ - [x] start decoding
+       - [x] use xor for pattern matching(should work?)
+       - [x] test endianness with decode
  - [ ] FormEnum -> FieldSelect
  - [ ] Add sane debug and logging facilities
  - [x] support bi-endian writes
