@@ -32,7 +32,11 @@ qemu-system-ppc64 -M powernv -cpu POWER9 -nographic -bios resources/loopback_asm
  - [x] read binaries
  - [x] pass path argument
  - [x] support bi-endian reads
+ - [ ] MnemonicEnum -> bitPat
+ - [ ] MnemonicEnum -> FormEnum
  - [ ] start decoding
+       - [ ] use xor for pattern matching(should work?)
+ - [ ] FormEnum -> FieldSelect
  - [x] support bi-endian writes
  - [x] convert from seq to arr
  - [x] replace bitslice with use non-mutating bitsliced
