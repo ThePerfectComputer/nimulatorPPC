@@ -32,6 +32,7 @@ qemu-system-ppc64 -M powernv -cpu POWER9 -nographic -bios resources/loopback_asm
  - [x] read binaries
  - [x] pass path argument
  - [x] support bi-endian reads
+ - [ ] support quad reads
  - [ ] support bi-endian writes
  - [ ] convert from seq to arr
  - [ ] replace bitslice with use non-mutating bitsliced
