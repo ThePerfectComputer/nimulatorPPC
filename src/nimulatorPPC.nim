@@ -18,7 +18,9 @@ import config
 var cpu_ram : array[config.ram_size, uint32]
 cpu_ram.init(config.firmware)
 
-print decode(cpu_ram.readUint32(0x00, endianness=ENDIAN.LITTLE))
+for byte_address in countup(0,32,4):
+  var instruction = cpu_ram.readUint32(byte_address.uint32, endianness=ENDIAN.LITTLE)
+  print decode(instruction).opcode
 # print cpu_ram
 
 # print MnemonicEnums.bc_l_a.int

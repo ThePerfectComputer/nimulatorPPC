@@ -1,6 +1,7 @@
 #generated 2021-06-15 01:40:18.515308
 type
   FormEnums* = enum
+    NONE,
     A1,
     A2,
     A3,
