@@ -13,7 +13,6 @@ type
 proc init*(ram : var openArray[uint32], firmware_filepath : string) =
   ## takes a filepath to the location of a firmware binary, and
   ## fills a seq of uint32's with the contents of the firmware binary
-  var mem_depth = ram.len
   
   # load firmware into memory seq
   var memory_by_bytes = open(firmware_filepath).readAll.map(x => x.uint8)
@@ -29,10 +28,16 @@ proc init*(ram : var openArray[uint32], firmware_filepath : string) =
   
   # load mem
   var i = 0
+  
   for vec4bytes in memory_by_bytes.chunked(4):
+
+    # the following is a fancy way of grabbing 4 bytes at
+    # a time and packing them into a uint32
     let word = collect(newSeq):
       for i, byte in vec4bytes:
         byte.uint32 shl (i * 8)
     var folded = word.foldl(a or b)
+
+    # place the created uint32 into the ram
     ram[i] = folded
     i = i + 1
