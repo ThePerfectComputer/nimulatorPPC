@@ -3,21 +3,18 @@ from sequtils import map
 from sugar import `=>`
 import print
 
-from ram/read import readUint8, readUint16
-from ram/read import readUint32, readUint64
-from ram/write import writeUint8, writeUint16
-from ram/write import writeUint32, writeUint64
-from ram/ram import init, ENDIAN
-
-from cpu/decoder import getOp
-
-from isa.mnemonic_enums import MnemonicEnums
 import config
+from ram/ram import init
+from cpu/fetch import fetchInstruction
+from cpu/decoder import getOp
 
  
 var cpu_ram : array[config.ram_size, uint32]
 cpu_ram.init(config.firmware)
 
-for byte_address in countup(0,32,4):
-  var instruction = cpu_ram.readUint32(byte_address.uint32, endianness=ENDIAN.LITTLE)
-  print getOp(instruction).opcode
+for cycle in 0..8:
+  var op = cpu_ram
+           .fetchInstruction()
+           .getOp()
+
+  print op.opcode

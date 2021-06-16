@@ -1,9 +1,10 @@
 from ../isa/mnemonic_enums import MnemonicEnums
 from ../core import uint128
-from registers import REGTYPE
+from regfiles import REGTYPE
 
 type
-  InstructionContext* = object
+  InstructionContext* = ref object
+    instruction*  : uint32
     opcode*       : MnemonicEnums
     sources*      : array[5, REGTYPE]
     sources_data* : array[5, uint128]

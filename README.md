@@ -27,9 +27,13 @@ The architecture of this simulator somewhat resembles the architecture
 of a multicyle CPU. The simulator simulates a single stage at a time,
 and continuously cycles through all stages.
 
-# Status and TODO
+# Status 
 
-Doesn't yet work!
+Not yet ready!!
+
+Currently just advances the program counter and decodes instructions.
+
+# TODO
 
  - [ ] populate .gitignore with all binaries to possibly be generated
  - [ ] build a binary that allows me to print registers
