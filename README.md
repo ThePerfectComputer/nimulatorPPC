@@ -2,8 +2,16 @@
 
 POWER9 emulator in Nim.
 
-## Getting Started
+# Getting Started
+## Dependencies
+ - gcc-powerpc64le-linux-gnu
+ - [nim](https://nim-lang.org/install.html)
+ - (optional) [qemu](https://wiki.qemu.org/Documentation/Platforms/PowerPC)
+```bash
+apt-get update && apt-get install -y gcc-powerpc64le-linux-gnu make nim
+```
 
+## Running
 Modify ``config.json`` with desired simulator configuration.
 
 ```bash
@@ -12,7 +20,7 @@ make
 nim c -r src/nimulatorPPC.nim
 ```
 
-## Qemu
+## Verifying with Qemu
 The generated firmware should also work in Qemu
 
 ```
