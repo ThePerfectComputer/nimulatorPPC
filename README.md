@@ -15,8 +15,11 @@ apt-get update && apt-get install -y gcc-powerpc64le-linux-gnu make nim
 Modify ``config.json`` with desired simulator configuration.
 
 ```bash
-cd resources/loopback
+git clone https://github.com/BracketMaster/nimulatorPPC
+cd nimulatorPPC
 make
+pushd resources/loopback
+popd
 nim c -r src/nimulatorPPC.nim
 ```
 
