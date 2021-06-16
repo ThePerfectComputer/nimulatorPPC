@@ -17,8 +17,8 @@ Modify ``config.json`` with desired simulator configuration.
 ```bash
 git clone https://github.com/BracketMaster/nimulatorPPC
 cd nimulatorPPC
-make
 pushd resources/loopback
+make
 popd
 nim c -r src/nimulatorPPC.nim
 ```
