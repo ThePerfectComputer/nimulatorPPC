@@ -8,6 +8,10 @@ from ram/ram import init
 from cpu/fetch import fetchInstruction
 from cpu/decoder import getOp
 
+# var GPR* : array[32, uint64]
+# print GPR
+# print REGTYPE.GPR
+
  
 var cpu_ram : array[config.ram_size, uint32]
 cpu_ram.init(config.firmware)

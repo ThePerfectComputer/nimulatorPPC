@@ -1,6 +1,7 @@
 # nimulatorPPC
 
-POWER9 emulator in Nim.
+POWER9 emulator in Nim implementing the ISA as specified in 
+[this document](https://ibm.ent.box.com/s/1hzcwkwf8rbju5h9iyf44wm94amnlcrv).
 
 # Getting Started
 ## Dependencies
@@ -72,3 +73,9 @@ Currently just advances the program counter and decodes instructions.
  - [x] reword loadMemory to have docs
  - [x] add docs to repository
  - [ ] support quad reads
+ - [ ] find pages in POWER manual with info on register 
+
+# Edge Cases
+
+ - mvtspr needs to redirect when it hits a dedicated special SPR
+ such as XER for example
