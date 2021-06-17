@@ -20,6 +20,7 @@ cd nimulatorPPC
 pushd resources/loopback
 make
 popd
+nimble install print itertools
 nim c -r src/nimulatorPPC.nim
 ```
 

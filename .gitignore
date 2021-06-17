@@ -15,7 +15,8 @@ src/cpu/pipeline
 
 src/isa/form_enums
 src/isa/mnemonic_enums
-src/isa/form_enums
+src/isa/form_fields
+src/isa/pairings
 
 src/ram/ram
 src/ram/read
