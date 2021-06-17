@@ -35,9 +35,10 @@ qemu-system-ppc64 -M powernv -cpu POWER9 -nographic -bios resources/loopback_asm
 
 ![](docs/architecture.png)
 
-The architecture of this simulator somewhat resembles the architecture
-of a multicyle CPU. The simulator simulates a single stage at a time,
-and continuously cycles through all stages.
+The architecture of this simulator is very simple at the moment.
+We fetch an instruction, determine it associated mnemonic, and finally
+execute that instruction. This loop repeats until the simulator is 
+terminated.
 
 # Status 
 
@@ -60,7 +61,8 @@ Currently just advances the program counter and decodes instructions.
  - [x] start decoding
        - [x] use xor for pattern matching(should work?)
        - [x] test endianness with decode
- - [ ] FormEnum -> FieldSelect
+ - [x] FormEnum -> FieldSelect
+ - [ ] Add sane debug and logging facilities
  - [ ] Add sane debug and logging facilities
  - [x] support bi-endian writes
  - [x] convert from seq to arr
