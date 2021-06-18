@@ -7,6 +7,16 @@ This simulator is designed such that it is easy to understand and follow.
 The hope is that by studying it, the motivated individual should be able
 to confidently design a POWER CPU in an HDL or RTL of their choice.
 
+# Status 
+Not yet ready!!
+
+The codebase doesn't yet have infrastructural support for virtual memory,
+(hopefully to be added in early July).
+
+Currently just advances the program counter and decodes instructions
+for the most part. The simulator does however currently support instructions
+listed in [docs/supported_instructions.md](docs/supported_instructions.md).
+
 # Getting Started
 ## Dependencies
  - gcc-powerpc64le-linux-gnu
@@ -49,16 +59,6 @@ terminated.
 
 See [adding a new instruction](docs/adding_a_new_instruction.md) for more
 details.
-
-# Status 
-Not yet ready!!
-
-The codebase doesn't yet have infrastructural support for virtual memory,
-(hopefully to be added in early July).
-
-Currently just advances the program counter and decodes instructions
-for the most part. The simulator does however currently support instructions
-listed in [docs/supported_instructions.md](docs/supported_instructions.md).
 
 # TODO
 
