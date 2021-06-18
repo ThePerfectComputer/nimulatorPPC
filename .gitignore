@@ -3,20 +3,22 @@
 *.o
 *.elf
 
-src/nimulatorPPC
-src/core
-src/memory
 src/config
+src/core
+src/nimulatorPPC
 src/test_ram
 
-src/cpu/decode
 src/cpu/decoder
-src/cpu/pipeline
+src/cpu/execute
+src/cpu/fetch
+src/cpu/instruction_context
+src/cpu/regfiles
+src/cpu/regtypes
 
-src/isa/form_enums
-src/isa/mnemonic_enums
+src/isa/bitpat_pairings
 src/isa/form_fields
-src/isa/pairings
+src/isa/get_form
+src/isa/mnemonic_enums
 
 src/ram/ram
 src/ram/read
