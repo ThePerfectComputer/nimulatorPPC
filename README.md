@@ -45,7 +45,99 @@ terminated.
 
 Not yet ready!!
 
-Currently just advances the program counter and decodes instructions.
+Currently just advances the program counter and decodes instructions
+for the most part. Does however support execution of the following 
+instructions.
+
+# Instruction Support
+ - [ ] add[o][.]
+ - [ ] addc[o][.]
+ - [ ] adde[o][.]
+ - [ ] addi
+ - [ ] addic
+ - [ ] addic.
+ - [x] addis
+ - [ ] addze[o][.]
+ - [ ] and[.]
+ - [ ] andc[.]
+ - [ ] andi.
+ - [ ] cmp
+ - [ ] cmpi
+ - [ ] cmpl
+ - [ ] cmpli
+ - [ ] divd[o][.]
+ - [ ] divde[o][.]
+ - [ ] divwu[o][.]
+ - [ ] extsb[.]
+ - [ ] extsw[.]
+ - [ ] mulhd[.]
+ - [ ] mulld[o][.]
+ - [ ] mulli
+ - [ ] mullw[o][.]
+ - [ ] rldcr[.]
+ - [ ] rldicl[.]
+ - [ ] rldicr[.]
+ - [ ] rldimi[.]
+ - [ ] rlwimi[.]
+ - [ ] rlwinm[.]
+ - [ ] sld[.]
+ - [ ] slw[.]
+ - [ ] srad[.]
+ - [ ] sradi[.]
+ - [ ] sraw[.]
+ - [ ] srawi[.]
+ - [ ] srd[.]
+ - [ ] srw[.]
+ - [ ] subf[o][.]
+ - [ ] subfc[o][.]
+ - [ ] subfe[o][.]
+ - [ ] subfic
+ - [ ] fnmsub[.]
+ - [ ] cntlzd[.]
+ - [ ] cntlzw[.]
+ - [ ] neg[o][.]
+ - [ ] nor[.]
+ - [ ] or[.]
+ - [ ] orc[.]
+ - [ ] ori
+ - [ ] oris
+ - [ ] xor[.]
+ - [ ] xori
+ - [ ] xoris
+ - [ ] b[l][a]
+ - [ ] bc[l][a]
+ - [ ] bcctr[l]
+ - [ ] bclr[l]
+ - [ ] bctar[l]
+ - [ ] lbz
+ - [ ] lbzu
+ - [ ] lbzx
+ - [ ] ld
+ - [ ] ldu
+ - [ ] ldx
+ - [ ] lhax
+ - [ ] lhz
+ - [ ] lhzu
+ - [ ] lwa
+ - [ ] lwax
+ - [ ] lwz
+ - [ ] lwzx
+ - [ ] stb
+ - [ ] stbu
+ - [ ] stbx
+ - [ ] std
+ - [ ] stdu
+ - [ ] stdx
+ - [ ] sth
+ - [ ] sthu
+ - [ ] sthx
+ - [ ] stw
+ - [ ] stwu
+ - [ ] stwx
+ - [ ] mfcr
+ - [ ] mfspr
+ - [ ] mtcrf
+ - [ ] mtocrf
 
 # TODO
 
@@ -63,7 +155,7 @@ Currently just advances the program counter and decodes instructions.
        - [x] use xor for pattern matching(should work?)
        - [x] test endianness with decode
  - [x] FormEnum -> FieldSelect
- - [ ] Add sane debug and logging facilities
+ - [ ] Add list of supported instructions
  - [ ] Add sane debug and logging facilities
  - [x] support bi-endian writes
  - [x] convert from seq to arr

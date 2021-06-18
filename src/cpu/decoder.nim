@@ -1,4 +1,4 @@
-from ../isa/pairings import Pairings, ISAInfo
+from ../isa/bitpat_pairings import Pairings, ISAInfo
 from ../isa/mnemonic_enums import MnemonicEnums
 from instruction_context import InstructionContext
 import tables

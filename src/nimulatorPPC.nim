@@ -7,6 +7,7 @@ import config
 from ram/ram import init
 from cpu/fetch import fetchInstruction
 from cpu/decoder import getOp
+from cpu/execute import executeOp
 
 # var GPR* : array[32, uint64]
 # print GPR
@@ -17,8 +18,7 @@ var cpu_ram : array[config.ram_size, uint32]
 cpu_ram.init(config.firmware)
 
 for cycle in 0..8:
-  var op = cpu_ram
-           .fetchInstruction()
-           .getOp()
-
-  print op.opcode
+  cpu_ram
+  .fetchInstruction()
+  .getOp()
+  .executeOp()
