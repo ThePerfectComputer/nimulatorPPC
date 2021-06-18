@@ -10,12 +10,11 @@ to confidently design a POWER CPU in an HDL or RTL of their choice.
 # Status 
 Not yet ready!!
 
-The codebase doesn't yet have infrastructural support for virtual memory,
-(hopefully to be added in early July).
+ - [x] full decoder with field select for all mnemonics
+ - [ ] support for virtual memory(hopefully to be added in early July).
 
-Currently just advances the program counter and decodes instructions
-for the most part. The simulator does however currently support instructions
-listed in [docs/supported_instructions.md](docs/supported_instructions.md).
+Supported instructions listed in 
+[docs/supported_instructions.md](docs/supported_instructions.md).
 
 # Getting Started
 ## Dependencies
