@@ -1,13 +1,18 @@
 # Supported Instructions
+ - [x] addis
+ - [ ] ld
+ - [ ] lbz
+ - [ ] and[.]
+ - [ ] bc[l][a]
+ - [ ] addi
+ - [ ] stb
+ - [ ] b[l][a]
  - [ ] add[o][.]
  - [ ] addc[o][.]
  - [ ] adde[o][.]
- - [ ] addi
  - [ ] addic
  - [ ] addic.
- - [x] addis
  - [ ] addze[o][.]
- - [ ] and[.]
  - [ ] andc[.]
  - [ ] andi.
  - [ ] cmp
@@ -53,15 +58,11 @@
  - [ ] xor[.]
  - [ ] xori
  - [ ] xoris
- - [ ] b[l][a]
- - [ ] bc[l][a]
  - [ ] bcctr[l]
  - [ ] bclr[l]
  - [ ] bctar[l]
- - [ ] lbz
  - [ ] lbzu
  - [ ] lbzx
- - [ ] ld
  - [ ] ldu
  - [ ] ldx
  - [ ] lhax
@@ -71,7 +72,6 @@
  - [ ] lwax
  - [ ] lwz
  - [ ] lwzx
- - [ ] stb
  - [ ] stbu
  - [ ] stbx
  - [ ] std
