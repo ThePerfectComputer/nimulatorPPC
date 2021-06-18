@@ -3,6 +3,10 @@
 POWER9 emulator in Nim implementing the ISA as specified in 
 [this document](https://ibm.ent.box.com/s/1hzcwkwf8rbju5h9iyf44wm94amnlcrv).
 
+This simulator is designed such that it is easy to understand and follow.
+The hope is that by studying it, the motivated individual should be able
+to confidently design a POWER CPU in an HDL or RTL of their choice.
+
 # Getting Started
 ## Dependencies
  - gcc-powerpc64le-linux-gnu
@@ -37,107 +41,24 @@ qemu-system-ppc64 -M powernv -cpu POWER9 -nographic -bios resources/loopback_asm
 ![](docs/architecture.png)
 
 The architecture of this simulator is very simple at the moment.
-We fetch an instruction, determine it associated mnemonic, and finally
+We fetch an instruction, determine its associated mnemonic, and finally
 execute that instruction. This loop repeats until the simulator is 
 terminated.
 
-# Status 
+# Adding a New Instruction
 
+See [adding a new instruction](docs/adding_a_new_instruction.md) for more
+details.
+
+# Status 
 Not yet ready!!
 
-Currently just advances the program counter and decodes instructions
-for the most part. Does however support execution of the following 
-instructions.
+The codebase doesn't yet have infrastructural support for virtual memory,
+(hopefully to be added in early July).
 
-# Instruction Support
- - [ ] add[o][.]
- - [ ] addc[o][.]
- - [ ] adde[o][.]
- - [ ] addi
- - [ ] addic
- - [ ] addic.
- - [x] addis
- - [ ] addze[o][.]
- - [ ] and[.]
- - [ ] andc[.]
- - [ ] andi.
- - [ ] cmp
- - [ ] cmpi
- - [ ] cmpl
- - [ ] cmpli
- - [ ] divd[o][.]
- - [ ] divde[o][.]
- - [ ] divwu[o][.]
- - [ ] extsb[.]
- - [ ] extsw[.]
- - [ ] mulhd[.]
- - [ ] mulld[o][.]
- - [ ] mulli
- - [ ] mullw[o][.]
- - [ ] rldcr[.]
- - [ ] rldicl[.]
- - [ ] rldicr[.]
- - [ ] rldimi[.]
- - [ ] rlwimi[.]
- - [ ] rlwinm[.]
- - [ ] sld[.]
- - [ ] slw[.]
- - [ ] srad[.]
- - [ ] sradi[.]
- - [ ] sraw[.]
- - [ ] srawi[.]
- - [ ] srd[.]
- - [ ] srw[.]
- - [ ] subf[o][.]
- - [ ] subfc[o][.]
- - [ ] subfe[o][.]
- - [ ] subfic
- - [ ] fnmsub[.]
- - [ ] cntlzd[.]
- - [ ] cntlzw[.]
- - [ ] neg[o][.]
- - [ ] nor[.]
- - [ ] or[.]
- - [ ] orc[.]
- - [ ] ori
- - [ ] oris
- - [ ] xor[.]
- - [ ] xori
- - [ ] xoris
- - [ ] b[l][a]
- - [ ] bc[l][a]
- - [ ] bcctr[l]
- - [ ] bclr[l]
- - [ ] bctar[l]
- - [ ] lbz
- - [ ] lbzu
- - [ ] lbzx
- - [ ] ld
- - [ ] ldu
- - [ ] ldx
- - [ ] lhax
- - [ ] lhz
- - [ ] lhzu
- - [ ] lwa
- - [ ] lwax
- - [ ] lwz
- - [ ] lwzx
- - [ ] stb
- - [ ] stbu
- - [ ] stbx
- - [ ] std
- - [ ] stdu
- - [ ] stdx
- - [ ] sth
- - [ ] sthu
- - [ ] sthx
- - [ ] stw
- - [ ] stwu
- - [ ] stwx
- - [ ] mfcr
- - [ ] mfspr
- - [ ] mtcrf
- - [ ] mtocrf
+Currently just advances the program counter and decodes instructions
+for the most part. The simulator does however currently support instructions
+listed in [docs/supported_instructions.md](docs/supported_instructions.md).
 
 # TODO
 
