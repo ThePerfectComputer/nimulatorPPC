@@ -2,24 +2,30 @@
 *.bin
 *.o
 *.elf
+# don't track debug symbols
+*.dSYM
 
-src/config
-src/core
-src/nimulatorPPC
-src/test_ram
-
-src/cpu/decoder
-src/cpu/execute
-src/cpu/fetch
-src/cpu/instruction_context
-src/cpu/regfiles
-src/cpu/regtypes
-
-src/isa/bitpat_pairings
-src/isa/form_fields
-src/isa/get_form
-src/isa/mnemonic_enums
-
-src/ram/ram
-src/ram/read
-src/ram/write
+# nim generates binaries with the same
+# name as the source files
+./src/instructions/instructions
+./src/instructions/addis
+./src/config
+./src/isa/mnemonic_enums
+./src/isa/bitpat_pairings
+./src/isa/get_form
+./src/isa/form_fields
+./src/cpu/execute
+./src/cpu/instruction_context
+./src/cpu/decoder
+./src/cpu/regtypes
+./src/cpu/regfiles
+./src/cpu/fetch
+./src/nimulatorPPC
+./src/utils/rawTerm
+./src/membus/write
+./src/membus/membus
+./src/membus/memory_map
+./src/membus/read
+./src/membus/devices/ram
+./src/core
+./src/deprecated/test_ram
