@@ -23,7 +23,7 @@ proc restoreTerm() =
   assert fd.tcSetAttr(TCSADRAIN, addr old_setting) == 0
   f.close()
 
-proc rx_empty*(fd : cint, readfds : TFdSet): bool = 
+proc rx_empty*(): bool = 
   var duration = Timeval(tvsec: 0.Time, tvUsec: 0)
   var is_empty = select(cast[cint](1), unsafeAddr readfds, nil, nil, addr duration)
   (is_empty).bool
