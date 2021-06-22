@@ -2,11 +2,12 @@ import termios
 from posix import select, Timeval, Time, TFdSet
 from posix import FD_ZERO, FD_SET
 import std/exitprocs
+import print
 
 var f : File
 var fd = cast[cint](stdin.getFileHandle())
 var old_setting = Termios()
-var readfds : TFdSet
+var readfds* : TFdSet
 
 proc setcbreak(fd : cint, termios: Termios) = 
   var new_setting = termios
@@ -19,11 +20,7 @@ proc setcbreak(fd : cint, termios: Termios) =
   new_setting.c_cc[VTIME] = cast[cuchar](0.uint8)
   assert fd.tcSetAttr(TCSADRAIN, addr new_setting) == 0
 
-proc restoreTerm() =
-  assert fd.tcSetAttr(TCSADRAIN, addr old_setting) == 0
-  f.close()
-
-proc rx_empty*(): bool = 
+proc rx_empty*(readfds : TFdSet): bool = 
   var duration = Timeval(tvsec: 0.Time, tvUsec: 0)
   var is_empty = select(cast[cint](1), unsafeAddr readfds, nil, nil, addr duration)
   (is_empty).bool
@@ -39,5 +36,9 @@ proc setRawTerm*() =
   fd.FD_SET(readfds)
   assert fd.tcGetAttr(addr old_setting) == 0
   fd.setcbreak(old_setting)
+
+proc restoreTerm() =
+  assert fd.tcSetAttr(TCSADRAIN, addr old_setting) == 0
+  f.close()
 
 addExitProc(restoreTerm)

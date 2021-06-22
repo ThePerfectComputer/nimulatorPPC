@@ -1,5 +1,6 @@
 import membus
 from devices/ram import readByte, writeByte
+from devices/uart import readByte, writeByte
 
 # TODO : perhaps memory system mapping should come from
 # a config file
@@ -12,7 +13,7 @@ proc readByte*(mem : Membus, byte_address : uint32) : uint8 =
     of 0..ram_upper:
       return ram.readByte(byte_address)
     of uart_lower..uart_upper:
-      raise Exception.newException("uart not implemented")
+      return uart.readByte(byte_address)
     else:
       raise Exception.newException("no device mapped to address " & $byte_address)
 
@@ -27,6 +28,6 @@ proc writeByte*(mem : Membus, byte_address : uint32, data : uint8) =
     of 0..ram_upper:
       ram.writeByte(byte_address, data)
     of uart_lower..uart_upper:
-      echo "reading uart"
+      uart.writeByte(byte_address, data)
     else:
       raise Exception.newException("no device mapped to address " & $byte_address)
