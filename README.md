@@ -72,8 +72,8 @@ details.
  - [x] MnemonicEnum -> bitPat
  - [x] MnemonicEnum -> FormEnum
  - [x] start decoding
-       - [x] use xor for pattern matching(should work?)
-       - [x] test endianness with decode
+    - [x] use xor for pattern matching(should work?)
+    - [x] test endianness with decode
  - [x] FormEnum -> FieldSelect
  - [ ] Add list of supported instructions
  - [ ] Add sane debug and logging facilities
