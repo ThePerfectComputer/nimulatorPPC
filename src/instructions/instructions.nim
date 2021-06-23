@@ -1,4 +1,4 @@
 
-include addis
-include ld
-include lbz
+include implementations/addis
+include implementations/ld
+include implementations/lbz
