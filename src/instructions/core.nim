@@ -1,9 +1,8 @@
 
 # get regfiles
-from ../cpu/regfiles import GPR, FPR, VR, VSR
-from ../cpu/regfiles import BESCR, AMOR, LR, XER
-from ../cpu/regfiles import VSCR, LPIDR, PIDR
-from ../cpu/regfiles import FPSCR, CR, BHRB
+from ../cpu/regfiles import nil
+from ../isa/reg_fields import nil
+from ../isa/regtypes import nil
 
 # for memory access
 from ../membus/membus import cpu_membus, ENDIAN

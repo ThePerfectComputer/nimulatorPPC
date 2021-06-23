@@ -1,6 +1,7 @@
 import membus
 from devices/ram import readByte, writeByte
 from devices/uart import readByte, writeByte
+from strutils import toHex
 
 # TODO : perhaps memory system mapping should come from
 # a config file
@@ -14,7 +15,7 @@ proc readByte*(mem : Membus, byte_address : uint64) : uint8 =
   elif (byte_address >= uart_lower) and (byte_address <= uart_upper):
     return uart.readByte(byte_address)
   else:
-    raise Exception.newException("no device mapped to address " & $byte_address)
+    raise Exception.newException("no device mapped to address " & byte_address.BiggestInt.toHex(16))
 
 proc writeByte*(mem : Membus, byte_address : uint64, data : uint8) = 
   const ram_upper  = (0xC0002000 - 1).uint64
@@ -26,4 +27,4 @@ proc writeByte*(mem : Membus, byte_address : uint64, data : uint8) =
   elif (byte_address >= uart_lower) and (byte_address <= uart_upper):
     uart.writeByte(byte_address, data)
   else:
-    raise Exception.newException("no device mapped to address " & $byte_address)
+    raise Exception.newException("no device mapped to address " & byte_address.BiggestInt.toHex(16))

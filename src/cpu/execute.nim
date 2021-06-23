@@ -9,5 +9,7 @@ proc executeOp*(instruction_context : InstructionContext) =
       instruction.addis()
     of MnemonicEnums.ld:
       instruction.ld()
+    of MnemonicEnums.lbz:
+      instruction.lbz()
     else:
       echo "got unsupoorted opcode ", instruction_context.opcode

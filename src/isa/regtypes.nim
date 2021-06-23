@@ -1,0 +1,1 @@
+type MSR* = object

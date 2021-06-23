@@ -20,6 +20,7 @@ var XER*   : array[1, uint64] # on page 10, also on page 971 as SPR[1]
 var VSCR*  : array[1, uint32] # on page 10
 var LPIDR* : array[1, uint32] # on page 931
 var PIDR*  : array[1, uint64] # on page 962
+var MSR*   : array[1, uint64] # on page 962
 
 # TODO : Not actually sure that SLB is a register
 var FPSCR* : array[1, uint32]  # on page 10

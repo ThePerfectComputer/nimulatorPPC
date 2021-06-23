@@ -10,8 +10,13 @@ proc ld*(instruction : uint32) =
   if RA_addr == 0:
     b = 0
   else:
-    b = GPR[RA_addr]
+    b = regfiles.GPR[RA_addr]
   
   EA = b + cast[uint64](DS_shift)
 
-  GPR[RT_addr] = cpu_membus.readUint64(EA, ENDIAN.LITTLE)
+  var little_endian = reg_fields.LE(regtypes.MSR())
+  var endiannes = ENDIAN.BIG
+  if little_endian == 1:
+    endiannes = ENDIAN.LITTLE
+
+  regfiles.GPR[RT_addr] = cpu_membus.readUint64(EA, endiannes)
