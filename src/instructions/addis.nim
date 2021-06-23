@@ -1,3 +1,5 @@
+include core
+
 proc addis*(instruction : uint32) = 
   var RA_addr = get_form.addis().RA(instruction)
   var RT_addr = get_form.addis().RT(instruction)

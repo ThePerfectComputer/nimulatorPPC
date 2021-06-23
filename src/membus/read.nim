@@ -4,7 +4,7 @@ from sugar import collect
 from membus import ENDIAN, TransactionSize, Membus
 from memory_map import readByte 
 
-proc read(membus : Membus, byte_address : uint32, size : TransactionSize, endianness : ENDIAN) : seq[uint8] =
+proc read(membus : Membus, byte_address : uint64, size : TransactionSize, endianness : ENDIAN) : seq[uint8] =
   # takes a seq of bytes to read and returns read data in a seq.
   # the ordering of the byts in the seq is endianess dependent
   for byte_address in byte_address..(byte_address + size.uint32 - 1):
@@ -13,10 +13,10 @@ proc read(membus : Membus, byte_address : uint32, size : TransactionSize, endian
     else:
       result.insert(membus.readByte(byte_address))
 
-proc readUint8*(membus : Membus, byte_address : uint32, endianness : ENDIAN) : uint8 = 
+proc readUint8*(membus : Membus, byte_address : uint64, endianness : ENDIAN) : uint8 = 
   return membus.read(byte_address, TransactionSize.BYTE, endianness)[0]
 
-proc readUint16*(membus : Membus, byte_address : uint32, endianness : ENDIAN) : uint16 = 
+proc readUint16*(membus : Membus, byte_address : uint64, endianness : ENDIAN) : uint16 = 
   var bytes = membus.read(byte_address, TransactionSize.HALFWORD, endianness)
 
   # make a seq of bytes each shifted by the correct amounts
@@ -29,7 +29,7 @@ proc readUint16*(membus : Membus, byte_address : uint32, endianness : ENDIAN) : 
 
   return folded
 
-proc readUint32*(membus : Membus, byte_address : uint32, endianness : ENDIAN) : uint32 = 
+proc readUint32*(membus : Membus, byte_address : uint64, endianness : ENDIAN) : uint32 = 
   var bytes = membus.read(byte_address, TransactionSize.WORD, endianness)
 
   # make a seq of bytes each shifted by the correct amounts
@@ -42,7 +42,7 @@ proc readUint32*(membus : Membus, byte_address : uint32, endianness : ENDIAN) : 
 
   return folded
 
-proc readUint64*(membus : Membus, byte_address : uint32, endianness : ENDIAN) : uint64 = 
+proc readUint64*(membus : Membus, byte_address : uint64, endianness : ENDIAN) : uint64 = 
   var bytes = membus.read(byte_address, TransactionSize.DOUBLEWORD, endianness)
 
   # make a seq of bytes each shifted by the correct amounts

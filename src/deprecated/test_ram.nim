@@ -1,10 +1,10 @@
-from membus/read import readUint8, readUint16
-from membus/read import readUint32, readUint64
-from membus/write import writeUint8, writeUint16
-from membus/write import writeUint32, writeUint64
-from membus.membus import cpu_membus, ENDIAN
+from ../membus/read import readUint8, readUint16
+from ../membus/read import readUint32, readUint64
+from ../membus/write import writeUint8, writeUint16
+from ../membus/write import writeUint32, writeUint64
+from ../membus/membus import cpu_membus, ENDIAN
 
-from membus/devices/ram import cpu_ram
+from ../membus/devices/ram import cpu_ram
 
 import print
 import strutils

@@ -5,12 +5,11 @@ from math import ceil, floormod
 from bitops import bitsliced, clearMasked
 
 import ../../config
-from ../membus import Membus
 
 var cpu_ram* : array[config.ram_size, uint32]
 var firmware_filepath = config.firmware
 
-proc readByte*(byte_address : uint32) : uint8 = 
+proc readByte*(byte_address : uint64) : uint8 = 
   var word = cpu_ram[byte_address div 4]
   var byte_select : range[0..3]
   byte_select = (byte_address.floorMod 4)
@@ -25,7 +24,7 @@ proc readByte*(byte_address : uint32) : uint8 =
     of 3:
       return word.bitsliced(24..31).uint8
 
-proc writeByte*(byte_address : uint32, value : uint8) =
+proc writeByte*(byte_address : uint64, value : uint8) =
 
   var word = cpu_ram[byte_address div 4]
   var byte_select : range[0..3] # which sub-byte in the word we want
