@@ -1,4 +1,7 @@
 from ../../utils/rawTerm import rx_empty, getChar, setRawTerm, readfds
+import os
+
+from strutils import toHex
 
 setRawTerm()
 

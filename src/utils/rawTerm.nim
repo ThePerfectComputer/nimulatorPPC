@@ -21,8 +21,8 @@ proc setcbreak(fd : cint, termios: Termios) =
 
 proc rx_empty*(readfds : TFdSet): bool = 
   var duration = Timeval(tvsec: 0.Time, tvUsec: 0)
-  var is_empty = select(cast[cint](1), unsafeAddr readfds, nil, nil, addr duration)
-  (is_empty).bool
+  var available = select(cast[cint](1), unsafeAddr readfds, nil, nil, addr duration)
+  not (available).bool
 
 proc getChar*() : char =
   var my_chars : array[1, uint8]
