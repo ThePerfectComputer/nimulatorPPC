@@ -1,6 +1,7 @@
 include ../core
 
 proc ld*(instruction : uint32) = 
+  ## page 53 in POWERISA manual 3.0B
   var RA_addr = get_form.ld().RA(instruction)
   var RT_addr = get_form.ld().RT(instruction)
   var DS_shift = get_form.ld().DS(instruction) shl 2

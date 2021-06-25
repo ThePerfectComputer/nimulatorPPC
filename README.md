@@ -63,6 +63,7 @@ details.
 
  - [ ] populate .gitignore with all binaries to possibly be generated
  - [ ] build a binary that allows me to print registers
+ - [ ] add exception stack print and general stack tracing
  - [x] get mvp loopback going in QEMU
  - [x] use QEMU + gdb to figure out what is wrong
  - [x] dockerfile
@@ -89,5 +90,7 @@ details.
 
 # Edge Cases
 
- - mvtspr needs to redirect when it hits a dedicated special SPR
+ - [ ] mvtspr needs to redirect when it hits a dedicated special SPR
  such as XER for example
+ - [ ] does CRO:3 need to be preserved across instructions that do compares
+ for example but can't have overflows by definition?

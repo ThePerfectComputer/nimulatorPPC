@@ -11,6 +11,8 @@ proc executeOp*(instruction_context : InstructionContext) =
       instruction.ld()
     of MnemonicEnums.lbz:
       instruction.lbz()
+    of MnemonicEnums.andidot:
+      instruction.andidot()
     else:
       var msg = "got unsupoorted opcode " & $instruction_context.opcode
       raise Exception.newException(msg)
