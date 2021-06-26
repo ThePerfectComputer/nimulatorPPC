@@ -64,6 +64,8 @@ details.
  - [ ] populate .gitignore with all binaries to possibly be generated
  - [ ] build a binary that allows me to print registers
  - [ ] add exception stack print and general stack tracing
+ - [ ] go through and add docs to sources
+ - [ ] make opcode error message red
  - [x] get mvp loopback going in QEMU
  - [x] use QEMU + gdb to figure out what is wrong
  - [x] dockerfile
