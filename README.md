@@ -38,6 +38,14 @@ nimble install print itertools
 nim c -r src/nimulatorPPC.nim
 ```
 
+## Running With Debug Mode
+
+You can also simulate the CPU with a debug mode enabled by:
+
+```
+nim c -d:dcpu -r src/nimulatorPPC
+```
+
 ## Verifying with Qemu
 The generated firmware should also work in Qemu
 
@@ -47,7 +55,7 @@ qemu-system-ppc64 -M powernv -cpu POWER9 -nographic -bios resources/loopback_asm
 
 # Design
 
-![](docs/architecture.png)
+![](docs/rendered/architecture.pdf)
 
 The architecture of this simulator is very simple at the moment.
 We fetch an instruction, determine its associated mnemonic, and finally

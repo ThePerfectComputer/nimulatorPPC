@@ -1,5 +1,8 @@
+import std/terminal
+from strformat import fmt
+
 from membus/membus import cpu_membus
-from cpu/fetch import fetchInstruction
+from cpu/fetch import fetchInstruction, CIA
 from cpu/decoder import getOp
 from cpu/execute import executeOp
 
@@ -9,16 +12,22 @@ from cpu/regfiles import advanceRegHistory, deltaRegfiles
 from cpu/regfiles import nil
 regfiles.MSR[0] = 1
 
-var debug* = false
+
+proc print_debug(cycle : int) =
+  echo fmt"cycle : {cycle}"
+  stdout.styledWriteLine(fgBlue, fmt"CIA = {fetch.CIA}")
+  stdout.styledWriteLine(fgBlue, deltaRegfiles())
 
 try:
   for cycle in 0..8:
-    advanceRegHistory()
+    when defined(dcpu):
+      advanceRegHistory()
+      defer: print_debug(cycle)
+
     cpu_membus
     .fetchInstruction()
     .getOp()
     .executeOp()
-    echo deltaRegfiles()
 except Exception as e:
   echo "got exception"
   raise e
