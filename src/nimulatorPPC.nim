@@ -1,33 +1,42 @@
-import std/terminal
+from std/terminal import styledWriteLine, fgBlue, fgGreen
+from std/terminal import styleBright, fgDefault
 from strformat import fmt
+from times import getTime, toUnixFloat
 
 from membus/membus import cpu_membus
 from cpu/fetch import fetchInstruction, CIA
 from cpu/decoder import getOp
 from cpu/execute import executeOp
 
-from cpu/regfiles import advanceRegHistory, deltaRegfiles
-
 # set little endian
 from cpu/regfiles import nil
 regfiles.MSR[0] = 1
 
-
 proc print_debug(cycle : int) =
   echo fmt"cycle : {cycle}"
   stdout.styledWriteLine(fgBlue, fmt"CIA = {fetch.CIA}")
-  stdout.styledWriteLine(fgBlue, deltaRegfiles())
+  stdout.styledWriteLine(fgBlue, regfiles.deltaRegfiles())
 
+var cycles = 0.uint64
+var t0 = getTime().toUnixFloat()
+var tf : float
+
+# start running simulation
 try:
-  for cycle in 0..8:
+  stdout.styledWriteLine(styleBright, "\n[", fgGreen, "STARTING SIMULATION", fgDefault, "]")
+  while true:
     when defined(dcpu):
-      advanceRegHistory()
-      defer: print_debug(cycle)
+      regfiles.advanceRegHistory()
+      defer: regfiles.print_debug(cycle)
 
     cpu_membus
     .fetchInstruction()
     .getOp()
     .executeOp()
+
+    cycles += 1
 except Exception as e:
-  echo "got exception"
+  tf = getTime().toUnixFloat()
+  var cycles_per_second = (cycles.float64/(tf - t0)).int64
+  stdout.styledWriteLine(fgGreen, fmt"SIMULATED FOR {cycles} CYCLES AT ROUGHLY {cycles_per_second} CYCLES PER SECOND")
   raise e

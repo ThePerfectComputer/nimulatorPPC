@@ -1,9 +1,9 @@
 # Supported Instructions
  - [x] addis
- - [ ] ld
- - [ ] lbz
- - [ ] and[.]
- - [ ] bc[l][a]
+ - [x] ld
+ - [x] lbz
+ - [x] and[.]
+ - [x] bc[l][a]
  - [ ] addi
  - [ ] stb
  - [ ] b[l][a]

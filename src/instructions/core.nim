@@ -1,4 +1,5 @@
 # get regfiles
+from ../cpu/fetch import CIA
 from ../cpu/regfiles import nil
 from ../isa/reg_fields import nil
 from ../isa/regtypes import nil

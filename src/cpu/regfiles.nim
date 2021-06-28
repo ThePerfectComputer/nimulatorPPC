@@ -37,7 +37,7 @@ var MSR*,     MSR_old: array[1, uint64] # on page 962
 var FPSCR*, FPSCR_old: array[1, uint32]  # on page 10
 var CR*,       CR_old: array[1, uint32]  # on page 10
 var CTR*,     CTR_old: array[1, uint64]  # on page 32
-var LR*,      LR_old : array[1, uint64] # on page 32
+var LR*,      LR_old : array[1, uint64]  # on page 32
 var BHRB*,   BHRB_old: array[32, uint64] # on page 10
 
 proc advanceRegHistory*() = 

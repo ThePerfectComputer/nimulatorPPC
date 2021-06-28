@@ -19,9 +19,12 @@
 
 # get regfiles
 from ../cpu/regfiles import nil
+from ../cpu/fetch import NIA
 from ../isa/reg_fields import nil
 from ../isa/regtypes import nil
 import ../isa/power_bitsliced
+
+import print
 
 proc setCR0*(value : uint64, copy_XER_SO = true) = 
   ## follows behavior of CR0 as defined on page 30 of POWER
@@ -47,8 +50,8 @@ type
     NO,
     NOT_SPECIFIED,
 
-proc evaluate_branch(BO, BI: range[0..31]) =
-  ## returns true if branch taken, false if not taken
+proc evaluate_branch*(BO, BI: range[0..31], target_address : uint64) =
+  ## sets NIA to target_address if branch is taken
   ## 
   ## fields BO and BI are used in the branch instructions to
   ## determine whether or not the branch is taken.
@@ -112,6 +115,7 @@ proc evaluate_branch(BO, BI: range[0..31]) =
       regfiles.CTR[0] = regfiles.CTR[0] - 1
       branch_taken = regfiles.CTR[0] != 0
     of 26:
+      taken_likely = TAKEN_LIKELY.NO
       regfiles.CTR[0] = regfiles.CTR[0] - 1
       branch_taken = regfiles.CTR[0] == 0
     of 27:
@@ -120,3 +124,6 @@ proc evaluate_branch(BO, BI: range[0..31]) =
       branch_taken = regfiles.CTR[0] == 0
     of 28..31:
       branch_taken = true
+    
+  if branch_taken:
+    NIA = target_address
