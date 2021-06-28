@@ -55,7 +55,7 @@ qemu-system-ppc64 -M powernv -cpu POWER9 -nographic -bios resources/loopback_asm
 
 # Design
 
-![](docs/rendered/architecture.pdf)
+[See Architectural Design Here](docs/rendered/architecture.pdf)
 
 The architecture of this simulator is very simple at the moment.
 We fetch an instruction, determine its associated mnemonic, and finally
