@@ -7,6 +7,25 @@ This simulator is designed such that it is easy to understand and follow.
 The hope is that by studying it, the motivated individual should be able
 to confidently design a POWER CPU in an HDL or RTL of their choice.
 
+The simulator is also moderately fast, executing up to 2.5M+ instructions
+per second if compiled with lots of nice optimizations(on apple silicon
+at least):
+
+## Clang Optimizations(Works on Mac for Example)
+```
+nim c -d:release --passC:-flto --passL:-flto -r src/nimulatorPPC
+```
+
+## GCC Optimizations
+```
+nim c -d:release -d:lto -r src/nimulatorPPC
+```
+
+Press ``ctrl+c`` to end a simulation. At the end of sim, you should
+get some stats such as :
+
+``SIMULATED FOR 9249776 CYCLES AT ROUGHLY 2583931 CYCLES PER SECOND``
+
 # Status 
 Simple incrementing loopback working. I.E., you type 'a' and you get
 back 'b'.

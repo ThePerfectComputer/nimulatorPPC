@@ -7,7 +7,7 @@ type
     bitPat*        : uint32
     dontCareMask*  : uint32 # the bits in this value are set for don't cares
  
-var Pairings* = {
+var Pairings* = [
   MnemonicEnums.add_o_dot : ISAInfo(
     bitPat       : 0b01111100000000000000001000010100.uint32,
     dontCareMask : 0b00000011111111111111110000000001.uint32),
@@ -2801,4 +2801,4 @@ var Pairings* = {
   MnemonicEnums.xxspltw : ISAInfo(
     bitPat       : 0b11110000000000000000001010010000.uint32,
     dontCareMask : 0b00000011111111111111100000000011.uint32),
-}.toTable
+]
