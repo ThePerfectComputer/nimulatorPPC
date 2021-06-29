@@ -21,6 +21,15 @@ var cycles = 0.uint64
 var t0 = getTime().toUnixFloat()
 var tf : float
 
+proc shutdownNimulator() {.noconv.} = 
+  tf = getTime().toUnixFloat()
+  stdout.styledWriteLine(styleBright, "\n[", fgGreen, "SHUTTING DOWN SIMULATION", fgDefault, "]")
+  var cycles_per_second = (cycles.float64/(tf - t0)).int64
+  stdout.styledWriteLine(fgGreen, fmt"SIMULATED FOR {cycles} CYCLES AT ROUGHLY {cycles_per_second} CYCLES PER SECOND")
+  quit(0)
+
+setControlCHook(shutdownNimulator)
+
 # start running simulation
 try:
   stdout.styledWriteLine(styleBright, "\n[", fgGreen, "STARTING SIMULATION", fgDefault, "]")
