@@ -8,7 +8,7 @@ proc signed_power_bitsliced*(value: uint32; slice: Slice[int]): int64 =
 
   if value.testBit(31 - slice.a):
     var offset = (31 - slice.a) - (31 - slice.b)
-    sign_extended = sign_extended.uint32.setMasked(offset..63)
+    sign_extended = sign_extended.uint64.setMasked(offset..63)
   
   return cast[int64](sign_extended)
 

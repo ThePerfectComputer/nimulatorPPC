@@ -4,9 +4,9 @@
  - [x] lbz
  - [x] and[.]
  - [x] bc[l][a]
- - [ ] addi
- - [ ] stb
- - [ ] b[l][a]
+ - [x] addi
+ - [x] stb
+ - [x] b[l][a]
  - [ ] add[o][.]
  - [ ] addc[o][.]
  - [ ] adde[o][.]
