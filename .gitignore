@@ -2,8 +2,12 @@
 *.bin
 *.o
 *.elf
+
 # don't track debug symbols
 *.dSYM
+
+# don't track the profiler's results
+profile_results.txt
 
 # nim generates binaries with the same
 # name as the source files

@@ -23,11 +23,7 @@ proc getOp*(instruction_context : InstructionContext) : InstructionContext =
       opcode_found = true
       break
    
-  try:
-    assert opcode_found
-  except Exception as e:
-    echo e.msg
-    echo "choked on invalid instruction"
-    raise e
+  if not opcode_found:
+    raise Exception.newException("choked on invalid instruction")
   
   instruction_context.opcode = matched_mnemonic
