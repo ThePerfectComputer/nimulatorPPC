@@ -24,8 +24,6 @@ from ../isa/reg_fields import nil
 from ../isa/regtypes import nil
 import ../isa/power_bitsliced
 
-import print
-
 proc setCR0*(value : uint64, copy_XER_SO = true) = 
   ## follows behavior of CR0 as defined on page 30 of POWER
   ## v3.0B ISA manual

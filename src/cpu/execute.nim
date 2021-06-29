@@ -1,3 +1,6 @@
+from ../utils/colors import BRIGHT_BLACK, BRIGHT_RED, RESET
+from strformat import fmt
+
 from instruction_context import InstructionContext
 from ../isa/mnemonic_enums import MnemonicEnums
 import ../instructions/instructions
@@ -22,5 +25,4 @@ proc executeOp*(instruction_context : InstructionContext) =
     of MnemonicEnums.stb:
       instruction.stb()
     else:
-      var msg = "got unsupoorted opcode " & $instruction_context.opcode
-      raise Exception.newException(msg)
+      raise Exception.newException(fmt"{BRIGHT_BLACK} UNSSUPORTED OPCODE: {RESET} {BRIGHT_RED} {$instruction_context.opcode} {RESET}")
