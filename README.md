@@ -8,7 +8,8 @@ The hope is that by studying it, the motivated individual should be able
 to confidently design a POWER CPU in an HDL or RTL of their choice.
 
 # Status 
-Not yet ready!!
+Simple incrementing loopback working. I.E., you type 'a' and you get
+back 'b'.
 
  - [x] full decoder with field select for all mnemonics
  - [ ] support for virtual memory(hopefully to be added in early July).
