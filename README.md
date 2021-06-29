@@ -11,6 +11,16 @@ The simulator is also moderately fast, executing up to 2.5M+ instructions
 per second if compiled with lots of nice optimizations(on apple silicon
 at least):
 
+if you want to run the loopback example, you'll need to change the contents of
+``config.json`` to the following:
+
+```js
+{
+	"firmware" : "resources/loopback_asm/firmware.bin",
+	"ram_size" : 16
+}
+```
+
 ## Clang Optimizations(Works on Mac for Example)
 ```
 nim c -d:release --passC:-flto --passL:-flto -r src/nimulatorPPC

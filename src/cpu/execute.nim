@@ -14,14 +14,18 @@ proc executeOp*(instruction_context : InstructionContext) =
       instruction.addis()
     of MnemonicEnums.andidot:
       instruction.andidot()
-    of MnemonicEnums.bc_l_a:
-      instruction.bc_l_a()
     of MnemonicEnums.b_l_a:
       instruction.b_l_a()
+    of MnemonicEnums.bc_l_a:
+      instruction.bc_l_a()
     of MnemonicEnums.lbz:
       instruction.lbz()
     of MnemonicEnums.ld:
       instruction.ld()
+    of MnemonicEnums.or_dot:
+      instruction.or_dot()
+    of MnemonicEnums.ori:
+      instruction.ori()
     of MnemonicEnums.stb:
       instruction.stb()
     else:

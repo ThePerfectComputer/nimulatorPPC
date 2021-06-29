@@ -1,12 +1,14 @@
 # Supported Instructions
- - [x] addis
- - [x] ld
- - [x] lbz
- - [x] and[.]
- - [x] bc[l][a]
  - [x] addi
- - [x] stb
+ - [x] addis
+ - [x] and[.]
  - [x] b[l][a]
+ - [x] bc[l][a]
+ - [x] lbz
+ - [x] ld
+ - [x] or[.]
+ - [x] ori
+ - [x] stb
  - [ ] add[o][.]
  - [ ] addc[o][.]
  - [ ] adde[o][.]
@@ -51,9 +53,7 @@
  - [ ] cntlzw[.]
  - [ ] neg[o][.]
  - [ ] nor[.]
- - [ ] or[.]
  - [ ] orc[.]
- - [ ] ori
  - [ ] oris
  - [ ] xor[.]
  - [ ] xori

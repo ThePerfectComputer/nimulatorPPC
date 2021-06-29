@@ -3,6 +3,8 @@ include implementations/addis
 include implementations/andidot
 include implementations/b_l_a
 include implementations/bc_l_a
-include implementations/ld
 include implementations/lbz
+include implementations/ld
+include implementations/or_dot
+include implementations/ori
 include implementations/stb
