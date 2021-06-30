@@ -1,4 +1,4 @@
-from ../utils/colors import BRIGHT_BLACK, BRIGHT_RED, RESET
+from ../utils/colors import bold_black, bold_red
 from strformat import fmt
 
 from instruction_context import InstructionContext
@@ -29,4 +29,4 @@ proc executeOp*(instruction_context : InstructionContext) =
     of MnemonicEnums.stb:
       instruction.stb()
     else:
-      raise Exception.newException(fmt"{BRIGHT_BLACK} UNSSUPORTED OPCODE: {RESET} {BRIGHT_RED} {$instruction_context.opcode} {RESET}")
+      raise Exception.newException("UNSUPPORTED OPCODE: ".bold_black & ($instruction_context.opcode).bold_red)

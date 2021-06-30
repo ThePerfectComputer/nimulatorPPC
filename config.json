@@ -1,4 +1,4 @@
 {
-	"firmware" : "resources/micropython/firmware.bin",
-	"ram_size" : 300000
+	"firmware" : "resources/loopback_asm/firmware.bin",
+	"ram_size" : 16
 }
