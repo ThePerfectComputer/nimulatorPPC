@@ -6,22 +6,24 @@ proc addis*(instruction : uint32) =
   var RT_addr = get_form.addis().RT(instruction)
   var SI_shft = get_form.addis().SI(instruction) shl 16
 
-  # sources for debugging
-  var sources : string
-  if instruction_trace:
-    sources = fmt"GPR[RA = {RA_addr}] = {regfiles.GPR[RA_addr]}"
+  # collect sources for debugging
+  instruction_trace:
+    var sources : string
+    sources.add_reg("GPR", regfiles.GPR[RA_addr], "RA", RA_addr)
 
+  # actually do work needed to execute instruction
   if RA_addr == 0:
     regfiles.GPR[RT_addr] = cast[uint64](SI_shft)
   else:
     regfiles.GPR[RT_addr] = regfiles.GPR[RA_addr] + cast[uint64](SI_shft)
 
-  # dests for debugging
-  var dests : string
-  if instruction_trace:
-    dests = fmt"GPR[RT = {RT_addr}] = {regfiles.GPR[RT_addr]}"
+  # collect dests for debugging
+  instruction_trace:
+    var dests : string
+    dests.add_reg("GPR", regfiles.GPR[RT_addr], "RA", RT_addr)
 
-  if instruction_trace:
+  # finish debug prep work and call instruction debug print
+  instruction_trace:
     var compact_mnemonic = if (RA_addr == 0): "lis" else : ""
 
     print_instruction(

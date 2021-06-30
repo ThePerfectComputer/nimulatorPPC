@@ -13,6 +13,7 @@ from ../membus/write import writeUint8, writeUint16, writeUint32, writeUint64
 import ../isa/get_form
 import ../isa/form_fields
 from strformat import fmt
+import ../utils/colors # TODO : remove this
 import side_effects
 
 import trace
