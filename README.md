@@ -73,7 +73,7 @@ nim c -r src/nimulatorPPC.nim
 You can also simulate the CPU with a debug mode enabled by:
 
 ```
-nim c -d:dcpu -r src/nimulatorPPC
+nim c  -d:itrace -r src/nimulatorPPC.nim
 ```
 
 ## Verifying with Qemu
