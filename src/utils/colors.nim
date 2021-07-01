@@ -8,6 +8,15 @@ let CYAN    = "\u001b[36m"
 let WHITE   = "\u001b[37m"
 let RESET   = "\u001b[0m"
 
+let BRIGHT_BLACK   = "\u001b[30;1m"
+let BRIGHT_RED     = "\u001b[31;1m"
+let BRIGHT_GREEN   = "\u001b[32;1m"
+let BRIGHT_YELLOW  = "\u001b[33;1m"
+let BRIGHT_BLUE    = "\u001b[34;1m"
+let BRIGHT_MAGENTA = "\u001b[35;1m"
+let BRIGHT_CYAN    = "\u001b[36;1m"
+let BRIGHT_WHITE   = "\u001b[37;1m"
+
 proc black*(str : string) : string =
   BLACK & str & RESET
 proc red*(str : string) : string =
@@ -24,15 +33,6 @@ proc cyan*(str : string) : string =
   CYAN & str & RESET
 proc white*(str : string) : string =
   WHITE & str & RESET
-
-let BRIGHT_BLACK   = "\u001b[30;1m"
-let BRIGHT_RED     = "\u001b[31;1m"
-let BRIGHT_GREEN   = "\u001b[32;1m"
-let BRIGHT_YELLOW  = "\u001b[33;1m"
-let BRIGHT_BLUE    = "\u001b[34;1m"
-let BRIGHT_MAGENTA = "\u001b[35;1m"
-let BRIGHT_CYAN    = "\u001b[36;1m"
-let BRIGHT_WHITE   = "\u001b[37;1m"
 
 proc bold_black*(str : string) : string = 
   BRIGHT_BLACK & str & RESET
