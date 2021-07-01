@@ -9,11 +9,24 @@ macro instruction_trace*(body : untyped): untyped =
   if itrace:
     return body
 
-proc add_reg*(str : var string, regname : string, value: SomeInteger or string, op_arg="", index=0.uint64) =
+proc add_reg*(str : var string, regname : string, value: SomeInteger or string, op_arg="", index : uint64 or string) =
   ## a usage example:
   ## 
   ## var sources : string
   ## sources.add_reg("GPR", regfiles.GPR[RA_addr], "RA", 0)
+  var lhs : string
+  if op_arg != "":
+    lhs = regname.bold_black & "[".bold_black & fmt"{op_arg} = {$index}" & "]".bold_black
+  else:
+    lhs = regname.bold_black
+  
+  var rhs = $value
+
+  str &= fmt"{lhs} = {rhs} "
+
+proc add_reg*(str : var string, regname : string, value: SomeInteger or string, op_arg="", index=0.uint64) =
+  ## another version of add_reg with default index
+  ## than can be called as follows:
   ## source.add_reg("CR", CR)
   var lhs : string
   if op_arg != "":
@@ -34,7 +47,7 @@ proc print_instruction*(full_mnemonic, args, sources, dests : string) =
     stdout.write remaining & "\r\n"
   else:
     echo ""
-    echo "\t├-", "sources : ".bold_blue 
+    echo "\t├─", "sources : ".bold_blue 
     echo "\t│ └───────", sources, ";"
     echo "\t└─", "dests : ".bold_blue
     echo "\t  └───────", dests, ";"

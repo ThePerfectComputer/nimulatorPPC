@@ -6,6 +6,8 @@ include ../core
 
 proc b_l_a*(instruction : uint32) = 
   ## page 37 in POWERISA manual 3.0B
+  ## make sure to grab the get_form.``instruction`` below
+  ## matches the the filename
   var AA = get_form.b_l_a().AA(instruction) # I think this is for absolute address
   var LI = get_form.b_l_a().LI(instruction) 
   var LK = get_form.b_l_a().LK(instruction) # should we place CIA+4 in link reg?

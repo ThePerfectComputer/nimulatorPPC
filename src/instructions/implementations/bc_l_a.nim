@@ -6,6 +6,8 @@ include ../core
 
 proc bc_l_a*(instruction : uint32) = 
   ## page 37 in POWERISA manual 3.0B
+  ## make sure to grab the get_form.``instruction`` below
+  ## matches the the filename
   var AA = get_form.bc_l_a().AA(instruction) # I think this is for absolute address
   var BO = get_form.bc_l_a().BO(instruction)
   var BI = get_form.bc_l_a().BI(instruction) # BI allows you to specify bit in CR(Condition Register to test)

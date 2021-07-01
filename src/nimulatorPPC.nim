@@ -38,7 +38,7 @@ setControlCHook(shutdownNimulator)
 try:
   echo "[".bold_black, "STARTING SIMULATION".green, "]".bold_black
 
-  for i in 0..8:
+  while running:
     cpu_membus
     .fetchInstruction()
     .getOp()
