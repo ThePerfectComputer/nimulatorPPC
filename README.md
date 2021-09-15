@@ -11,6 +11,9 @@ The simulator is also moderately fast, executing up to 2.5M+ instructions
 per second if compiled with lots of nice optimizations(on apple silicon
 at least):
 
+# Running and Getting Started
+
+## Setting Your Config
 if you want to run the loopback example, you'll need to change the contents of
 ``config.json`` to the following:
 
@@ -21,13 +24,20 @@ if you want to run the loopback example, you'll need to change the contents of
 }
 ```
 
-## Clang Optimizations(Works on Mac for Example)
+## Run With No Optimizations
+
+```bash
+nim c -r src/nimulatorPPC.nim
 ```
+
+## Optimizations if you use Clang
+
+```bash
 nim c -d:release --passC:-flto --passL:-flto -r src/nimulatorPPC
 ```
 
-## GCC Optimizations
-```
+## Optimizations if you us GCC
+```bash
 nim c -d:release -d:lto -r src/nimulatorPPC
 ```
 
