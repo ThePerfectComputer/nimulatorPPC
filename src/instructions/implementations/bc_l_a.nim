@@ -2,7 +2,7 @@
 # 1. copy this file
 # 2. for any new instruction, update the comments
 # as needed and anything associated with the comments
-import ../core
+import ../imported_symbols
 
 proc bc_l_a*(instruction : uint32) = 
   ## page 37 in POWERISA manual 3.0B

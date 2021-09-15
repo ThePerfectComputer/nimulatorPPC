@@ -2,7 +2,7 @@
 # 1. copy this file
 # 2. for any new instruction, update the comments
 # as needed and anything associated with the comments
-import ../core
+import ../imported_symbols
 
 proc ld*(instruction : uint32) = 
   ## page 53 in POWERISA manual 3.0B

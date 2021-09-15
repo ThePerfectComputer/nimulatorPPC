@@ -23,8 +23,6 @@ from ../cpu/fetch import NIA
 from ../isa/reg_fields import nil
 from ../isa/regtypes import nil
 import ../isa/power_bitslices
-from strutils import toBin
-from trace import add_reg, instruction_trace, print_instruction
 
 proc setCR0*(value : uint64, copy_XER_SO = true) = 
   ## follows behavior of CR0 as defined on page 30 of POWER
@@ -33,12 +31,6 @@ proc setCR0*(value : uint64, copy_XER_SO = true) =
   var negative = if (value_as_int < 0): 1.uint32 else : 0.uint32
   var positive = if (value_as_int > 0): 1.uint32 else : 0.uint32
   var zero     = if (value_as_int == 0): 1.uint32 else : 0.uint32
-
-   # collect sources read from by setCR0 for debugging
-  instruction_trace:
-    var sources : string
-    sources.add_reg("XER", regfiles.XER[0].BiggestInt.toBin(64))
-    sources.add_reg("CR", regfiles.CR[0].BiggestInt.toBin(32))
 
   # TODO: determine if CR0:3 needs to be preserved across instructions
   # that do compares but can't have overflows by definition.
@@ -49,21 +41,6 @@ proc setCR0*(value : uint64, copy_XER_SO = true) =
   var CR0 = (negative shl 3) or (positive shl 2) or (zero shl 1) or CR0_3
   var CR_masked = regfiles.CR[0] and 0x0F_FF_FF_FF
   regfiles.CR[0] = (CR0 shl 28 ) or CR_masked
-
-  # collect dests written to by setCR0 for debugging
-  instruction_trace:
-    var dests : string
-    dests.add_reg("XER", regfiles.XER[0].BiggestInt.toBin(64))
-    dests.add_reg("CR", regfiles.CR[0].BiggestInt.toBin(32))
-
-  # call debug print on setCR0
-  instruction_trace:
-    print_instruction(
-      "setCR0 (side effect of instruction above)",
-      "",
-      sources,
-      dests
-    )
 
 type
   TAKEN_LIKELY* = enum

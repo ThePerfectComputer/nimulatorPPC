@@ -1,4 +1,4 @@
-import core
+import imported_symbols
 
 # functions for CR field 0
 proc FIELD0_BIT3*(msr : CR) : uint64 = 

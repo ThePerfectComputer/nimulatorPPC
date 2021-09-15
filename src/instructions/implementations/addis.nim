@@ -2,7 +2,7 @@
 # 1. copy this file
 # 2. for any new instruction, update the comments
 # as needed and anything associated with the comments
-import ../core
+import ../imported_symbols
 
 # this proc name matches file name
 proc addis*(instruction : uint32) = 

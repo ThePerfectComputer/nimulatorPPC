@@ -2,7 +2,7 @@
 # 1. copy this file
 # 2. for any new instruction, update the comments
 # as needed and anything associated with the comments
-import ../core
+import ../imported_symbols
 
 proc addi*(instruction : uint32) = 
   ## page 67 in POWERISA manual 3.0B
