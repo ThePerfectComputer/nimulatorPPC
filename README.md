@@ -92,6 +92,9 @@ You can also simulate the CPU with a debug mode enabled by:
 nim c  -d:itrace -r src/nimulatorPPC.nim
 ```
 
+Note that debug mode does not currently work as it is being
+rewritten.
+
 ## Verifying with Qemu
 The generated firmware should also work in Qemu
 
