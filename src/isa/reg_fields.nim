@@ -1,3 +1,7 @@
-include reg_fields/MSR
-include reg_fields/XER
-include reg_fields/CR
+import reg_fields/MSR
+import reg_fields/XER
+import reg_fields/CR
+
+export MSR
+export XER
+export CR

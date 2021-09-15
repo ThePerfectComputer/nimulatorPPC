@@ -1,4 +1,3 @@
-from math import floormod
 from bitops import clearMasked, bitsliced
 
 from membus import TransactionSize, ENDIAN, Membus

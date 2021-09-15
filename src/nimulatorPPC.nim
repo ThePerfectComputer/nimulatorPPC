@@ -1,5 +1,4 @@
-from utils/colors import blue, green
-from utils/colors import bold_black
+from utils/colors import blue, green, bold_black
 from strformat import fmt
 from times import getTime, toUnixFloat
 
@@ -7,8 +6,6 @@ from membus/membus import cpu_membus
 from cpu/fetch import fetchInstruction, CIA
 from cpu/decoder import getOp
 from cpu/execute import executeOp
-
-const debug = defined(dcpu)
 
 # set little endian
 from cpu/regfiles import nil

@@ -2,7 +2,7 @@
 # 1. copy this file
 # 2. for any new instruction, update the comments
 # as needed and anything associated with the comments
-include ../core
+import ../core
 
 proc ld*(instruction : uint32) = 
   ## page 53 in POWERISA manual 3.0B
@@ -13,11 +13,6 @@ proc ld*(instruction : uint32) =
   var DS_shift = get_form.ld().DS(instruction) shl 2
   var b : uint64
   var EA : uint64
-
-  # collect sources for debugging
-  instruction_trace:
-    var sources : string
-    sources.add_reg("GPR", "0x" & regfiles.GPR[RA_addr].BiggestInt.toHex(16), "RA", RA_addr)
 
   # actually do work needed to execute instruction
   if RA_addr == 0:
@@ -34,23 +29,3 @@ proc ld*(instruction : uint32) =
 
   var memval = cpu_membus.readUint64(EA, endiannes)
   regfiles.GPR[RT_addr] = memval
-
-  # a bit difficult to know what MEM[EA] contains until after executing
-  # the instruction, but nevertheless, we consider MEM[EA] as a source
-  # for the purposes of consistent debugging
-  instruction_trace:
-    sources.add_reg("MEM", "0x" & memval.BiggestInt.toHex(16), "EA", "0x" & EA.BiggestInt.toHex(16))
-
-  # collect dests for debugging
-  instruction_trace:
-    var dests : string
-    dests.add_reg("GPR", regfiles.GPR[RT_addr], "RT", RT_addr)
-
-  # finish debug prep work and call instruction debug print
-  instruction_trace:
-    print_instruction(
-      "lbz",
-      fmt"{RT_addr}, {RA_addr}, {DS_shift}",
-      sources,
-      dests
-    )

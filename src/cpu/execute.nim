@@ -1,5 +1,4 @@
 from ../utils/colors import bold_black, bold_red
-from strformat import fmt
 
 from instruction_context import InstructionContext
 from ../isa/mnemonic_enums import MnemonicEnums

@@ -2,7 +2,7 @@
 # 1. copy this file
 # 2. for any new instruction, update the comments
 # as needed and anything associated with the comments
-include ../core
+import ../core
 
 proc bc_l_a*(instruction : uint32) = 
   ## page 37 in POWERISA manual 3.0B
@@ -30,12 +30,3 @@ proc bc_l_a*(instruction : uint32) =
   # otherwise, deffering makes sure the debug print for setCR0
   # gets fired at the very end of this function
   defer: side_effects.evaluate_branch(BO, BI, target_address)
-
-  # finish debug prep work and call instruction debug print
-  instruction_trace:
-    print_instruction(
-      "bc_l_a ",
-      fmt"0b{BO.BiggestInt.toBin(5)}, {BI}, 0x{target_address.BiggestInt.toHex(16)}, AA = {AA}, " & fmt"LK = {LK}",
-      "CIA",
-      "NIA"
-    )

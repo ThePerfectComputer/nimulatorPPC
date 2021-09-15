@@ -1,6 +1,5 @@
 import termios
-from posix import select, Timeval, Time, TFdSet
-from posix import FD_ZERO, FD_SET
+from posix import select, Timeval, Time, TFdSet, FD_ZERO, FD_SET
 import std/exitprocs
 
 var f : File

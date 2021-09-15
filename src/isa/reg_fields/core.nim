@@ -1,6 +1,9 @@
-from bitops import bitsliced, testBit, setMasked
-
 # get regfiles
-from ../../cpu/regfiles import nil
+import ../../cpu/regfiles
 import ../regtypes
-import ../power_bitsliced
+import ../power_bitslices
+
+# now do exports
+export regfiles
+export regtypes
+export power_bitslices

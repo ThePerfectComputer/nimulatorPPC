@@ -1,7 +1,4 @@
 from ../../utils/rawTerm import rx_empty, getChar, setRawTerm, readfds
-import os
-
-from strutils import toHex
 
 setRawTerm()
 
@@ -11,14 +8,14 @@ const UART_BASE = 0xC0002000
 const POTATO_CONSOLE_RX               = (UART_BASE + 0x08).uint64
 const POTATO_CONSOLE_STATUS           = (UART_BASE + 0x10).uint64
 const POTATO_CONSOLE_STATUS_RX_EMPTY  = (UART_BASE + 0x01).uint64
-const POTATO_CONSOLE_STATUS_TX_EMPTY  = (UART_BASE + 0x02).uint64
-const POTATO_CONSOLE_STATUS_RX_FULL   = (UART_BASE + 0x04).uint64
-const POTATO_CONSOLE_STATUS_TX_FULL   = (UART_BASE + 0x08).uint64
+# const POTATO_CONSOLE_STATUS_TX_EMPTY  = (UART_BASE + 0x02).uint64
+# const POTATO_CONSOLE_STATUS_RX_FULL   = (UART_BASE + 0x04).uint64
+# const POTATO_CONSOLE_STATUS_TX_FULL   = (UART_BASE + 0x08).uint64
 
 # registers to write to
 const POTATO_CONSOLE_TX               = (UART_BASE + 0x00).uint64
-const POTATO_CONSOLE_CLOCK_DIV        = (UART_BASE + 0x18).uint64
-const POTATO_CONSOLE_IRQ_EN           = (UART_BASE + 0x20).uint64
+# const POTATO_CONSOLE_CLOCK_DIV        = (UART_BASE + 0x18).uint64
+# const POTATO_CONSOLE_IRQ_EN           = (UART_BASE + 0x20).uint64
 
 proc readByte*(byte_address : uint64) : uint8 = 
   if byte_address == POTATO_CONSOLE_RX:

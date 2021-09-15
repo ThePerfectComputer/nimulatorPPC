@@ -6,8 +6,6 @@ import ../core
 
 proc andidot*(instruction : uint32) = 
   ## page 92 in POWERISA manual 3.0B
-  ## make sure to grab the get_form.``instruction`` below
-  ## matches the the filename
   var RS_addr = get_form.andidot().RS(instruction)
   var RA_addr = get_form.andidot().RA(instruction)
   var UI      = get_form.andidot().UI(instruction)

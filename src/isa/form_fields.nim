@@ -1,5 +1,6 @@
 # generated 2021-06-17 21:53:32.245631
-import power_bitsliced
+# manually modified Wednesday September 15
+import power_bitslices
   
 type NONE* = object
 

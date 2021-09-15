@@ -127,6 +127,8 @@ details.
  - [x] add docs to repository
  - [ ] support quad reads
  - [ ] find pages in POWER manual with info on register 
+ - [ ] move debug to VCD
+ - [ ] cast to int64 for BiggestInt
 
 # Edge Cases
 

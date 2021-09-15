@@ -1,6 +1,5 @@
 #generated 2021-06-17 21:42:52.913555
 from mnemonic_enums import MnemonicEnums
-import tables
 
 type
   ISAInfo* = object

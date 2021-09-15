@@ -1,7 +1,6 @@
 from ../isa/bitpat_pairings import Pairings, ISAInfo
 from ../isa/mnemonic_enums import MnemonicEnums
 from instruction_context import InstructionContext
-import tables
 
 proc matches(instruction : uint32, insn_info : ISAInfo) : bool = 
   var bitPat          = insn_info.bitPat

@@ -22,7 +22,7 @@ from ../cpu/regfiles import nil
 from ../cpu/fetch import NIA
 from ../isa/reg_fields import nil
 from ../isa/regtypes import nil
-import ../isa/power_bitsliced
+import ../isa/power_bitslices
 from strutils import toBin
 from trace import add_reg, instruction_trace, print_instruction
 
