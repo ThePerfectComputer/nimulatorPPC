@@ -13,6 +13,12 @@ at least):
 
 # Running and Getting Started
 
+You'll need to have [nim](https://nim-lang.org/)
+installed.
+
+Installing Nim from [source](https://github.com/nim-lang/Nim)
+is also pretty easy.
+
 ## Setting Your Config
 if you want to run the loopback example, you'll need to change the contents of
 ``config.json`` to the following:
@@ -110,8 +116,7 @@ details.
 # TODO
 
  - [ ] populate .gitignore with all binaries to possibly be generated
- - [ ] build a binary that allows me to print registers
- - [ ] add exception stack print and general stack tracing
+ - [ ] dump instruction trace to VCD
  - [ ] go through and add docs to sources
  - [x] make opcode error message red
  - [x] get mvp loopback going in QEMU
