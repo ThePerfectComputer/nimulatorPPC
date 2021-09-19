@@ -8,6 +8,7 @@ from cpu/decoder import getOp
 from cpu/execute import executeOp
 
 # set little endian
+# TODO : move endian setting to the config.nim file
 from cpu/regfiles import nil
 regfiles.MSR[0] = 1
 
