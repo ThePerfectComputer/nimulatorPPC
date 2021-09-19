@@ -1,8 +1,13 @@
 from strformat import fmt
 from strutils import toBin
 
+## types
 type
-  PosU = 1.uint..uint.high
+  timescale* = enum
+    pico
+    nano
+    micro
+    milli
 
   signal* = object
     UID      : uint
@@ -15,14 +20,56 @@ type
     children_scopes  : seq[scope]
     children_signals : seq[signal]
 
-var signal_count  = 0.uint
+## private variables
 var root*         = scope(name : "root")
+var vcd_file*     = ""
+var timestamp     = 0.uint
 
-var vcd_ctx_built = false
-var vcd_file*      = ""
+## public variables
+var signal_count  = 0.uint
+var vcd_ctx_built  = false
+var vcd_time_scale = nano
+
+## private functions
+proc `$`(timescale : timescale) : string = 
+  case timescale:
+    of pico:
+      "ps"
+    of nano:
+      "ns"
+    of micro:
+      "us"
+    of milli:
+      "ms"
 
 proc vcd_write_line(line : string) = 
   vcd_file &= line & "\n"
+
+proc traverse_scopes(root : scope) = 
+  fmt"$scope module {root.name} $end".vcd_write_line
+
+  for sig in root.children_signals:
+    fmt"$var wire {sig.num_bits} UID{sig.UID} {sig.name} $end".vcd_write_line
+
+  for scope in root.children_scopes:
+    traverse_scopes(scope)
+
+  "$upscope $end".vcd_write_line
+
+proc write_inits(root : scope) = 
+
+  for sig in root.children_signals:
+    var bin_string = sig.data.BiggestInt.toBin(sig.num_bits)
+    fmt"b{bin_string} UID{sig.UID}".vcd_write_line
+
+  for scope in root.children_scopes:
+    write_inits(scope)
+
+## public functions
+proc set*(sig : signal, value : uint64) = 
+  if sig.data != value:
+    var bin_string = value.BiggestInt.toBin(sig.num_bits)
+    fmt"b{bin_string} UID{sig.UID}".vcd_write_line
 
 proc register_new_scope*(name : string, parent : var scope = root) : scope =
   assert not vcd_ctx_built
@@ -43,30 +90,20 @@ proc register_new_signal*(name : string,
   parent.children_signals.add(new_signal)
   new_signal
 
-proc traverse_scopes(root : scope) = 
-  fmt"$scope module {root.name} $end".vcd_write_line
+proc tick*(step : Positive) = 
+  assert vcd_ctx_built
+  timestamp += step.uint
+  fmt"#{timestamp}".vcd_write_line
 
-  for sig in root.children_signals:
-    fmt"$var integer {sig.num_bits} UID{sig.UID} {sig.name} $end".vcd_write_line
 
-  for scope in root.children_scopes:
-    traverse_scopes(scope)
-
-  "$upscope $end".vcd_write_line
-
-proc write_inits(root : scope) = 
-
-  for sig in root.children_signals:
-    var bin_string = sig.data.BiggestInt.toBin(sig.num_bits)
-    fmt"b{bin_string} UID{sig.UID}".vcd_write_line
-
-  for scope in root.children_scopes:
-    write_inits(scope)
+proc set_timescale*(timescale : timescale) = 
+  assert not vcd_ctx_built
+  vcd_time_scale = timescale
 
 proc freeze*() = 
   assert not vcd_ctx_built
   "$date today $end".vcd_write_line
-  "$timescale 1 ns $end".vcd_write_line
+  fmt"$timescale 1 {vcd_time_scale} $end".vcd_write_line
   "".vcd_write_line
 
   traverse_scopes(root)
@@ -77,5 +114,6 @@ proc freeze*() =
   "$dumpvars".vcd_write_line
   write_inits(root)
   "$end".vcd_write_line
+  "".vcd_write_line
 
   vcd_ctx_built = true
