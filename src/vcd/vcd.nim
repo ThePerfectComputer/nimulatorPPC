@@ -1,10 +1,13 @@
+from strformat import fmt
+from strutils import toBin
+
 type
   PosU = 1.uint..uint.high
 
   signal* = object
     UID      : uint
     name     : string
-    num_bits : PosU
+    num_bits : Positive
     data     : uint64
 
   scope* = ref object
@@ -16,6 +19,10 @@ var signal_count  = 0.uint
 var root*         = scope(name : "root")
 
 var vcd_ctx_built = false
+var vcd_file*      = ""
+
+proc vcd_write_line(line : string) = 
+  vcd_file &= line & "\n"
 
 proc register_new_scope*(name : string, parent : var scope = root) : scope =
   assert not vcd_ctx_built
@@ -24,7 +31,7 @@ proc register_new_scope*(name : string, parent : var scope = root) : scope =
   new_scope
 
 proc register_new_signal*(name : string,
-                          num_bits : PosU,
+                          num_bits : Positive,
                           init = 0.uint,
                           parent : var scope = root) : signal = 
   assert not vcd_ctx_built
@@ -37,21 +44,38 @@ proc register_new_signal*(name : string,
   new_signal
 
 proc traverse_scopes(root : scope) = 
-  echo "$scope module ", root.name, " $end"
+  fmt"$scope module {root.name} $end".vcd_write_line
 
   for sig in root.children_signals:
-    echo "$var integer ", sig.num_bits, " UID", sig.UID, " ", sig.name, " $end"
+    fmt"$var integer {sig.num_bits} UID{sig.UID} {sig.name} $end".vcd_write_line
 
   for scope in root.children_scopes:
     traverse_scopes(scope)
 
-  echo "$upscope $end"
+  "$upscope $end".vcd_write_line
+
+proc write_inits(root : scope) = 
+
+  for sig in root.children_signals:
+    var bin_string = sig.data.BiggestInt.toBin(sig.num_bits)
+    fmt"b{bin_string} UID{sig.UID}".vcd_write_line
+
+  for scope in root.children_scopes:
+    write_inits(scope)
 
 proc freeze*() = 
   assert not vcd_ctx_built
-  echo "$date today $end"
-  echo "$timescale 1 ns $end"
+  "$date today $end".vcd_write_line
+  "$timescale 1 ns $end".vcd_write_line
+  "".vcd_write_line
+
   traverse_scopes(root)
-  echo "$enddefinitions $end"
-  echo "#0"
-  echo "$dumpvars"
+  "$enddefinitions $end".vcd_write_line
+  "".vcd_write_line
+
+  "#0".vcd_write_line
+  "$dumpvars".vcd_write_line
+  write_inits(root)
+  "$end".vcd_write_line
+
+  vcd_ctx_built = true
