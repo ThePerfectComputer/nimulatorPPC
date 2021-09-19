@@ -33,3 +33,4 @@ src/membus/read
 src/membus/devices/ram
 src/core
 src/deprecated/test_ram
+src/vcd/test_vcd
