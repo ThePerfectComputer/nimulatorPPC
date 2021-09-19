@@ -30,6 +30,15 @@ if you want to run the loopback example, you'll need to change the contents of
 }
 ```
 
+## Building the Firmware
+You'll also need to build the binary firmware from source.
+
+```bash
+pushd resources/loopback_asm/
+make
+popd
+```
+
 ## Run With No Optimizations
 
 ```bash
