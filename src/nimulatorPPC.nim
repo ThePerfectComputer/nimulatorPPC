@@ -3,14 +3,11 @@ from strformat import fmt
 from times import getTime, toUnixFloat
 
 from membus/membus import cpu_membus
-from cpu/fetch import fetchInstruction, CIA
+from cpu/fetch import fetchInstruction
 from cpu/decoder import getOp
 from cpu/execute import executeOp
 
-# set little endian
-# TODO : move endian setting to the config.nim file
-from cpu/regfiles import nil
-
+# allow for graceful shutdowns and runtime stats
 var running      = true
 var instructions = 0.uint64
 var t0 = getTime().toUnixFloat()

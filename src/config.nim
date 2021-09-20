@@ -5,7 +5,7 @@ from cpu/regfiles import nil
 const config = static:
   staticRead("../config.json")
 
-# exported configs
+# exported configs determined at compiletime
 const firmware* = static:
   config.parseJson()["firmware"].getStr()
 
@@ -13,10 +13,6 @@ const ram_size* = static:
   config.parseJson()["ram_size"].getInt()
 
 # things configured here
-const little_endian = static:
-  var endianness = config.parseJson()["little_endian"].getBool()
-  endianness.uint
-
-regfiles.MSR[0] = little_endian
+regfiles.MSR[0] = config.parseJson()["little_endian"].getBool().uint
 
 const itrace*   = defined(itrace)
