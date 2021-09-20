@@ -1,12 +1,22 @@
 import json
+from cpu/regfiles import nil
 
-proc getRamSizeConfig() : int {. compiletime .} =
-  const config = staticRead("../config.json")
-  return config.parseJson()["ram_size"].getInt()
+# parse config json at compile time
+const config = static:
+  staticRead("../config.json")
 
-proc getFirmwareConfig() : string {. compiletime .} =
-  const config = staticRead("../config.json")
-  return config.parseJson()["firmware"].getStr()
+# exported configs
+const firmware* = static:
+  config.parseJson()["firmware"].getStr()
 
-const firmware* = getFirmwareConfig()
-const ram_size* = getRamSizeConfig()
+const ram_size* = static:
+  config.parseJson()["ram_size"].getInt()
+
+# things configured here
+const little_endian = static:
+  var endianness = config.parseJson()["little_endian"].getBool()
+  endianness.uint
+
+regfiles.MSR[0] = little_endian
+
+const itrace*   = defined(itrace)

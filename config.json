@@ -1,4 +1,5 @@
 {
-	"firmware" : "resources/micropython/firmware.bin",
-	"ram_size" : 300000
+	"firmware"      : "resources/micropython/firmware.bin",
+	"ram_size"      : 300000,
+	"little_endian" : true
 }

@@ -10,7 +10,6 @@ from cpu/execute import executeOp
 # set little endian
 # TODO : move endian setting to the config.nim file
 from cpu/regfiles import nil
-regfiles.MSR[0] = 1
 
 var running      = true
 var instructions = 0.uint64
