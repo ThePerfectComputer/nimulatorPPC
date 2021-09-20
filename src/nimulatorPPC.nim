@@ -8,7 +8,13 @@ from cpu/decoder import getOp
 from cpu/execute import executeOp
 
 from config import itrace
-when itrace: import vcd/vcd
+
+# do vcd setup if VCD tracing is enabled
+when itrace: 
+  import vcd/vcd
+
+  var clk = register_new_signal(name="clk", num_bits=1, init=0)
+  build_vcd_ctx()
 
 # allow for graceful shutdowns and runtime stats
 var running      = true
@@ -36,12 +42,22 @@ try:
   echo "[".bold_black, "STARTING SIMULATION".green, "]".bold_black
 
   while running:
+
+    when itrace:
+      clk.set(0.uint64)
+      tick(1)
+
     cpu_membus
     .fetchInstruction()
     .getOp()
     .executeOp()
 
     instructions += 1
+
+    when itrace:
+      clk.set(1.uint64)
+      tick(1)
+
 except Exception as e:
   tf = getTime().toUnixFloat()
 
