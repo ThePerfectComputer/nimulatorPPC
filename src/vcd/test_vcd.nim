@@ -13,11 +13,8 @@ var signal_a_1 = register_new_signal(name="sig_a_1", num_bits=3, init=1, parent=
 # var sub_b_3 = register_new_scope(name="sub_b_3", parent=b)
 
 set_timescale(nano)
-freeze()
+build_vcd_ctx()
 
 for i in 1..6:
   signal_a_1.set(i.uint64)
   tick(1)
-
-
-writeFile("toy.vcd", vcd_file)

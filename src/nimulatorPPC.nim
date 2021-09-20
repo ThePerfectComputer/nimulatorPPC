@@ -7,6 +7,9 @@ from cpu/fetch import fetchInstruction
 from cpu/decoder import getOp
 from cpu/execute import executeOp
 
+from config import itrace
+when itrace: import vcd/vcd
+
 # allow for graceful shutdowns and runtime stats
 var running      = true
 var instructions = 0.uint64
@@ -20,9 +23,9 @@ proc shutdownNimulator() {.noconv.} =
   echo "[".bold_black, "SHUTTING DOWN SIMULATION".green, "]".bold_black
 
   var instructions_per_second = (instructions.float64/(tf - t0)).int64
-  echo fmt"SIMULATED FOR {instructions} ".green &
-       fmt"INSTRUCTIONS AT ROUGHLY {instructions_per_second} ".green &
-       fmt"INSTRUCTIONS PER SECOND".green
+  echo fmt"SIMULATED FOR {instructions} ".blue &
+       fmt"INSTRUCTIONS AT ROUGHLY {instructions_per_second} ".blue &
+       fmt"INSTRUCTIONS PER SECOND".blue
 
   running = false
 

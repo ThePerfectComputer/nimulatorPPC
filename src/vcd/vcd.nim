@@ -1,5 +1,7 @@
 from strformat import fmt
+from ../utils/colors import blue, green, bold_black
 from strutils import toBin
+import std/exitprocs
 
 ## types
 type
@@ -21,12 +23,12 @@ type
     children_signals : seq[signal]
 
 ## private variables
-var root*         = scope(name : "root")
-var vcd_file*     = ""
-var timestamp     = 0.uint
+var vcd_file_handle  : File
+var root             = scope(name : "root")
+var vcd_file_name    = "trace.vcd"
 
-## public variables
-var signal_count  = 0.uint
+var timestamp      = 0.uint
+var signal_count   = 0.uint
 var vcd_ctx_built  = false
 var vcd_time_scale = nano
 
@@ -43,7 +45,7 @@ proc `$`(timescale : timescale) : string =
       "ms"
 
 proc vcd_write_line(line : string) = 
-  vcd_file &= line & "\n"
+  vcd_file_handle.writeLine(line)
 
 proc traverse_scopes(root : scope) = 
   fmt"$scope module {root.name} $end".vcd_write_line
@@ -65,12 +67,14 @@ proc write_inits(root : scope) =
   for scope in root.children_scopes:
     write_inits(scope)
 
-## public functions
-proc set*(sig : signal, value : uint64) = 
-  if sig.data != value:
-    var bin_string = value.BiggestInt.toBin(sig.num_bits)
-    fmt"b{bin_string} UID{sig.UID}".vcd_write_line
+proc close_vcd_file() = 
+  if vcd_ctx_built:
+    echo "[".bold_black, fmt"CLOSING: {vcd_file_name}".blue, "]".bold_black
+    vcd_file_handle.close()
 
+addExitProc(close_vcd_file)
+
+## public functions
 proc register_new_scope*(name : string, parent : var scope = root) : scope =
   assert not vcd_ctx_built
   var new_scope = scope(name : name)
@@ -90,18 +94,19 @@ proc register_new_signal*(name : string,
   parent.children_signals.add(new_signal)
   new_signal
 
-proc tick*(step : Positive) = 
-  assert vcd_ctx_built
-  timestamp += step.uint
-  fmt"#{timestamp}".vcd_write_line
-
-
 proc set_timescale*(timescale : timescale) = 
   assert not vcd_ctx_built
   vcd_time_scale = timescale
 
-proc freeze*() = 
+proc set_filename*(name : string) = 
   assert not vcd_ctx_built
+  vcd_file_name = name
+
+proc build_vcd_ctx*() = 
+  assert not vcd_ctx_built
+
+  vcd_file_handle = open(vcd_file_name, fmWrite)
+
   "$date today $end".vcd_write_line
   fmt"$timescale 1 {vcd_time_scale} $end".vcd_write_line
   "".vcd_write_line
@@ -117,3 +122,14 @@ proc freeze*() =
   "".vcd_write_line
 
   vcd_ctx_built = true
+
+proc tick*(step : Positive) = 
+  assert vcd_ctx_built
+  timestamp += step.uint
+  fmt"#{timestamp}".vcd_write_line
+
+proc set*(sig : signal, value : uint64) = 
+  assert vcd_ctx_built
+  if sig.data != value:
+    var bin_string = value.BiggestInt.toBin(sig.num_bits)
+    fmt"b{bin_string} UID{sig.UID}".vcd_write_line
