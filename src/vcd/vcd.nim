@@ -128,8 +128,9 @@ proc tick*(step : Positive) =
   timestamp += step.uint
   fmt"#{timestamp}".vcd_write_line
 
-proc set*(sig : signal, value : uint64) = 
+proc set*(sig : var signal, value : uint64) = 
   assert vcd_ctx_built
   if sig.data != value:
+    sig.data   = value
     var bin_string = value.BiggestInt.toBin(sig.num_bits)
     fmt"b{bin_string} UID{sig.UID}".vcd_write_line
