@@ -25,8 +25,9 @@ if you want to run the loopback example, you'll need to change the contents of
 
 ```js
 {
-	"firmware" : "resources/loopback_asm/firmware.bin",
-	"ram_size" : 16
+        "firmware"      : "resources/loopback_asm/firmware.bin",
+        "ram_size"      : 16,
+        "little_endian" : true
 }
 ```
 
