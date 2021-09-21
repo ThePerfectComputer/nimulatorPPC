@@ -11,7 +11,7 @@ type
     micro
     milli
 
-  signal* = object
+  signal* = ref object
     UID      : uint
     name     : string
     num_bits : Positive
@@ -129,8 +129,8 @@ proc tick*(step : Positive) =
   fmt"#{timestamp}".vcd_write_line
 
 proc set*(sig : var signal, value : uint64) = 
-  assert vcd_ctx_built
   if sig.data != value:
     sig.data   = value
-    var bin_string = value.BiggestInt.toBin(sig.num_bits)
-    fmt"b{bin_string} UID{sig.UID}".vcd_write_line
+    if vcd_ctx_built:
+      var bin_string = value.BiggestInt.toBin(sig.num_bits)
+      fmt"b{bin_string} UID{sig.UID}".vcd_write_line

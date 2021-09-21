@@ -1,5 +1,4 @@
 import json
-from cpu/regfiles import nil
 
 # parse config json at compile time
 const config = static:
@@ -13,6 +12,6 @@ const ram_size* = static:
   config.parseJson()["ram_size"].getInt()
 
 # things configured here
-regfiles.MSR[0] = config.parseJson()["little_endian"].getBool().uint
+const little_endian* = config.parseJson()["little_endian"].getBool().uint64
 
 const itrace*   = defined(itrace)

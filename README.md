@@ -96,14 +96,18 @@ nim c -r src/nimulatorPPC.nim
 
 ## Running With Debug Mode
 
-You can also simulate the CPU with a debug mode enabled by:
+You can also simulate the CPU with a debug mode that dumps CPU
+state to a value change dump(VCD) file. You can view VCD files
+with software such as [GTKWave](http://gtkwave.sourceforge.net/).
+
+The default location the waveform gets dumped to is ``./trace.vcd``.
 
 ```
 nim c  -d:itrace -r src/nimulatorPPC.nim
 ```
 
-Note that debug mode does not currently work as it is being
-rewritten.
+![](docs/waveform.jpg)
+
 
 ## Verifying with Qemu
 The generated firmware should also work in Qemu

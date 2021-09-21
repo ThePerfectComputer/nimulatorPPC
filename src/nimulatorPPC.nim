@@ -7,7 +7,12 @@ from cpu/fetch import fetchInstruction
 from cpu/decoder import getOp
 from cpu/execute import executeOp
 
-from config import itrace
+from config import itrace, little_endian
+from cpu/regfiles import MSR, `[]`, `[]=`
+
+# some configurations that don't really seem to
+# fit elsewhere
+regfiles.MSR[0] = config.little_endian
 
 # do vcd setup if VCD tracing is enabled
 when itrace: 
@@ -41,6 +46,7 @@ setControlCHook(shutdownNimulator)
 try:
   echo "[".bold_black, "STARTING SIMULATION".green, "]".bold_black
 
+  # for i in 0..10:
   while running:
 
     when itrace:
