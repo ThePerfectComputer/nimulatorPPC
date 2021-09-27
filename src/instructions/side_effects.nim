@@ -24,23 +24,18 @@ from ../isa/reg_fields import nil
 from ../isa/regtypes import nil
 import ../isa/power_bitslices
 
-proc setCR0*(value : uint64, copy_XER_SO = true) = 
+proc setCR0*(value : uint64) = 
   ## follows behavior of CR0 as defined on page 30 of POWER
   ## v3.0B ISA manual
-  var value_as_int = cast[int64](value)
-  var negative = if (value_as_int < 0): 1.uint32 else : 0.uint32
-  var positive = if (value_as_int > 0): 1.uint32 else : 0.uint32
-  var zero     = if (value_as_int == 0): 1.uint32 else : 0.uint32
+  var negative = value shr 63
+  var zero     = (value == 0).uint32
+  var positive = (not zero) and (not negative)
 
-  # TODO: determine if CR0:3 needs to be preserved across instructions
-  # that do compares but can't have overflows by definition.
-  var CR0_3 = reg_fields.FIELD0_BIT3(regtypes.CR()).uint32
-  if copy_XER_SO:
-    CR0_3 = reg_fields.SO(regtypes.XER()).uint32
+  var CR0_3 = reg_fields.SO(regtypes.XER()).uint32
 
-  var CR0 = (negative shl 3) or (positive shl 2) or (zero shl 1) or CR0_3
-  var CR_masked = regfiles.CR[0] and 0x0F_FF_FF_FF
-  regfiles.CR[0] = (CR0 shl 28 ) or CR_masked
+  var CR0             = (negative shl 3) or (positive shl 2) or (zero shl 1) or CR0_3
+  var CRF_1_through_7 = regfiles.CR[0] and 0x0F_FF_FF_FF
+  regfiles.CR[0]      = (CR0 shl 28 ).uint32 or CRF_1_through_7
 
 type
   TAKEN_LIKELY* = enum
