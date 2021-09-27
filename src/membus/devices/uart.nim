@@ -14,7 +14,7 @@ const POTATO_CONSOLE_STATUS_RX_EMPTY  = (UART_BASE + 0x01).uint64
 
 # registers to write to
 const POTATO_CONSOLE_TX               = (UART_BASE + 0x00).uint64
-# const POTATO_CONSOLE_CLOCK_DIV        = (UART_BASE + 0x18).uint64
+const POTATO_CONSOLE_CLOCK_DIV        = (UART_BASE + 0x18).uint64
 # const POTATO_CONSOLE_IRQ_EN           = (UART_BASE + 0x20).uint64
 
 proc readByte*(byte_address : uint64) : uint8 = 
@@ -35,5 +35,7 @@ proc writeByte*(byte_address : uint64, value : uint8) =
   if byte_address == POTATO_CONSOLE_TX:
     stdout.write(cast[char](value))
     stdout.flushFile()
+  elif byte_address == POTATO_CONSOLE_CLOCK_DIV:
+    discard
   else:
     raise Exception.newException("UART peripheral can't write to address " & $byte_address)

@@ -46,7 +46,6 @@ setControlCHook(shutdownNimulator)
 try:
   echo "[".bold_black, "STARTING SIMULATION".green, "]".bold_black
 
-  # for i in 0..10:
   while running:
 
     when itrace:
