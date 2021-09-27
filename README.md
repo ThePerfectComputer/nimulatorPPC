@@ -133,7 +133,9 @@ details.
 # TODO
 
  - [ ] populate .gitignore with all binaries to possibly be generated
- - [ ] dump instruction trace to VCD
+ - [x] working preliminary instruction dump trace to VCD
+ - [ ] opcode names in waveform
+ - [ ] proper support for endian change in instruction fetch
  - [ ] go through and add docs to sources
  - [x] make opcode error message red
  - [x] get mvp loopback going in QEMU
