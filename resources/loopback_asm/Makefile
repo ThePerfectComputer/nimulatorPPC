@@ -1,4 +1,6 @@
 GCC=powerpc64le-linux-gnu-
+AS_END=-le
+LD_END=-EL
 
 all: firmware.bin
 
