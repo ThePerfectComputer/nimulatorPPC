@@ -130,8 +130,6 @@ details.
  - [ ] proper support for endian change in instruction fetch
  - [ ] go through and add docs to sources
  - [x] make opcode error message red
- - [x] get mvp loopback going in QEMU
- - [x] use QEMU + gdb to figure out what is wrong
  - [x] dockerfile
  - [x] read binaries
  - [x] pass path argument
