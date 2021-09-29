@@ -76,7 +76,6 @@ Supported instructions listed in
 ## Dependencies
  - gcc-powerpc64le-linux-gnu
  - [nim](https://nim-lang.org/install.html)
- - (optional) [qemu](https://wiki.qemu.org/Documentation/Platforms/PowerPC)
 ```bash
 apt-get update && apt-get install -y gcc-powerpc64le-linux-gnu make nim
 ```
@@ -108,13 +107,6 @@ nim c  -d:itrace -r src/nimulatorPPC.nim
 
 ![](docs/waveform.jpg)
 
-
-## Verifying with Qemu
-The generated firmware should also work in Qemu
-
-```
-qemu-system-ppc64 -M powernv -cpu POWER9 -nographic -bios resources/loopback_asm/firmware.bin
-```
 
 # Design
 
