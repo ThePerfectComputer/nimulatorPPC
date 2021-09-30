@@ -49,7 +49,7 @@ set_divisor:
   # should have no effect on nimulatorPPC
   addi  %r5, 0, 0
   oris  %r5, %r5, uart_base_address@h
-	ori   %r5, %r5, uart_base_address@l
+  ori   %r5, %r5, uart_base_address@l
 
   addi  %r1, 0, 26
   stb   %r1, 0x18(%r5)
